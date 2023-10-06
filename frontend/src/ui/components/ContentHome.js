@@ -1,12 +1,12 @@
 import style from '../styles/ContentHome.module.css'
-import Footer from './Footer'
 import { Link } from 'react-router-dom';
 function ContentHome() {
     return (
         <>
             <div className='container'>
+
                 <div className="row">
-                    <div className="col-12 col-md-12">
+                    <div className="col-md-6">
                         <div className={style.home_box}>
                             <p className={style.home_text}>
                                 Navegue pelo nosso Dashboard de Editores
@@ -16,22 +16,29 @@ function ContentHome() {
                             </p>
                             <Link to="/login" className={`btn ${style.home_button}`}>Encontre ou seja um Editor</Link>
                         </div>
+                    </div>
+
+                    <div className="col-md-6">
                         <div className={style.home_boxright}>
                             <div className={style.home_box_reduced_1}></div>
                             <div className={style.home_box_reduced_2}></div>
                             <img className={style.home_image}></img>
                         </div>
                     </div>
+                    
                 </div>
 
 
-                <div className='row'>
-                    <div className='col-12 col-md-12'>
+                <div className="row">
+                    <div className='col-md-6'>
                         <div className={style.home_box2}>
                             <div className={style.home_box_reduced_3}></div>
                             <div className={style.home_box_reduced_4}></div>
                             <img className={style.home_image2}></img>
                         </div>
+                    </div>
+
+                    <div className='col-md-6'>
                         <div className={style.home_boxright2}>
                             <div class="text-center">
                                 <h3 className="mt-4">O que você está esperando?</h3>
@@ -44,9 +51,9 @@ function ContentHome() {
                     </div>
                 </div>
 
-                <div className='row'>
+                <div className={`row ${style.common_questions}`}>
                     <h3 className="text-center">PERGUNTAS FREQUENTES</h3>
-                    <div className='col-md-6'>
+                    <div className="col-md-6">
 
                         <div className="fs-5 mt-4 text-center">
                             <h4>Como posso contratar um editor?</h4>
@@ -63,10 +70,9 @@ function ContentHome() {
                             </p>
                         </div>
                     </div>
-
                 </div>
+
             </div>
-        <Footer/>
         </>
     )
 }

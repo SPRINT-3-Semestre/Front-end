@@ -1,11 +1,14 @@
 import ContentHome from "../../ui/components/ContentHome";
-import Header from "../../ui/components/Header-home";
+import Footer from "../../ui/components/surfaces/Footer";
+import Header from "../../ui/components/surfaces/Header-home";
 
 function Home() {
     return (
         <>
         <Header/>
         <ContentHome/>
+        <Footer />
+
         </>
     )
 }

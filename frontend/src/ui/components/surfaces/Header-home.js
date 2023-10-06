@@ -1,4 +1,4 @@
-import style from '../styles/Header-home.module.css'
+import style from '../../styles/Header-home.module.css'
 
 function Header(){
 return(
