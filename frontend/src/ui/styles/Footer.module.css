@@ -1,5 +1,7 @@
 
 footer{
+    width: 99.8vw;
+    background-color: #FF9E00;
     position: relative;
     top: 5em;
 }
