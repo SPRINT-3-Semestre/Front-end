@@ -6,10 +6,12 @@
     width: 25%;
     margin: 0 auto;
     padding: 25px;
-    margin-top: 3em;
     margin-right: 15%;
     background-color: #fff;
     font-size: 14px;
+    position: relative;
+    left: 8em;
+    bottom: 22em;
 }
 
 .form_login input {
@@ -52,10 +54,54 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    margin-top: 1em;
 }
 
-.form_login button:hover{
+.form_login button:hover {
     transition: 0.5s;
     background: #0B5ED7;
     cursor: pointer;
+}
+
+.form_login a {
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+}
+
+.form_login a:hover {
+    text-decoration: underline;
+    color: #0B5ED7;
+}
+
+.form_login .link_right {
+    margin-top: 0.1em;
+    display: flex;
+    position: relative;
+    width: 1vw;
+    left: 3em;
+    text-wrap: nowrap;
+    text-decoration: none;
+    color: #000;
+
+}
+
+.form_login .link_left {
+    display: flex;
+    margin-top: 0.1em;
+    position: relative;
+    width: 1vw;
+    right: 11em;
+    text-wrap: nowrap;
+    text-decoration: none;
+    color: #000;
+
+}
+
+.login_image {
+    display: flex;
+    position: relative;
+    top: 10em;
+    left: 2em;
+    width: 50%;
 }
