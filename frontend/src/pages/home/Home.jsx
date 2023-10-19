@@ -1,15 +1,17 @@
 import Footer from "../../ui/components/surfaces/Footer";
-import Header_home from "../../ui/components/surfaces/Header-home";
+import Header_home from "../../ui/components/surfaces/Header_home";
 
 import style from '../../ui/styles/ContentHome.module.css'
 import { Link } from 'react-router-dom';
 import Helmet from 'react-helmet'
+import Header from "../../ui/components/surfaces/Header";
 
 
 function Home() {
     return (
         <>
             <Helmet title="EditMatch - Home" />
+            <Header />
             <Header_home />
             <div className='container'>
 

@@ -1,6 +1,6 @@
 import style from '../../styles/Header-home.module.css'
 
-function Header(){
+function Header_Home(){
 return(
     <>
     <header className={style.header}>
@@ -11,4 +11,4 @@ return(
     )
 }
 
-export default Header
+export default Header_Home;
