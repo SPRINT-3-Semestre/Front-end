@@ -21,9 +21,9 @@ const Sidebar = () => {
           <img src={logo} alt="Logo da editmatch" width={40} height={50} />
 
           <SidebarIcon image={personPhoto} firstoption="Perfil" thirdoptiion="Sair" />
-          <SidebarIcon image={chat} firstoption="Minhas conversas" />
-          <SidebarIcon image={cart} firstoption="Meus Pedidos" secondoption="Carrinho" thirdoptiion="Favoritos" />
-          <img src={grafico} alt="Logo da editmatch" width={40} height={50} />
+          <SidebarIcon image={chat} firstoption="Conversas" />
+          <SidebarIcon image={cart} firstoption="Meus Pedidos" />
+          <img src={grafico} alt="Grafico"  />
 
         </div>
 

@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Helmet } from "react-helmet";
-import CardPerson from "../../../ui/components/CardPerson";
-import Sidebar from "../../../ui/components/surfaces/SideBar";
-import Carousel from 'react-bootstrap/Carousel';
+import CardPerson from "../../ui/components/CardPerson";
+import Sidebar from "../../ui/components/surfaces/SideBar";
 
 const customers = [
     {
@@ -23,10 +22,6 @@ const customers = [
     }];
 
 function Exhibition() {
-    const [hasMoreThanThreeCustomers, setHasMoreThanThreeCustomers] = useState(
-        customers.length > 3
-    );
-
     return (
         <>
             <Helmet title="Exibição de editores" />

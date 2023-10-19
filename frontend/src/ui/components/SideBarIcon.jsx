@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import style from '../styles/Side.module.css';
 
-const SidebarIcon = ({image,firstoption,secondoption,thirdoptiion}) => {
+const SidebarIcon = ({image,firstoption,secondoption,thirdoptiion,ref1,ref2,ref3}) => {
   const [open, setOpen] = useState(false);
   
   const handleClick = () => {
@@ -15,9 +15,9 @@ const SidebarIcon = ({image,firstoption,secondoption,thirdoptiion}) => {
       {open && (
         <div className={style.sidebar_content}>
           <ul>
-            <li><a href="#">{firstoption}</a></li>
-            <li><a href="#">{secondoption}</a></li>
-            <li><a href="#">{thirdoptiion}</a></li>
+            <li><a href={ref1}>{firstoption}</a></li>
+            <li><a href={ref2}>{secondoption}</a></li>
+            <li><a href={ref3}>{thirdoptiion}</a></li>
           </ul>
         </div>
       )}
