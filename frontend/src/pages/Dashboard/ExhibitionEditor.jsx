@@ -1,42 +1,43 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import CardPerson from "../../ui/components/CardPerson";
 import Sidebar from "../../ui/components/surfaces/SideBar";
+import style from "../../ui/styles/Exhibition.module.css";
+import api from "../../Api";
 
-const customers = [
-    {
-        nome: "Wesley de Lima Costa",
-        precoHora: 10,
-        imagem: "",
-        habilidades: ["C++", "C#", "Java"]
-    }, {
-        nome: "Erik Benficas",
-        precoHora: 10,
-        imagem: "https://www.w3schools.com/howto/img_avatar.png",
-        habilidades: ["Python", "Javascript", "Java"]
-    }, {
-        nome: "Lucas Silva Lima",
-        precoHora: 10,
-        imagem: "https://www.w3schools.com/howto/img_avatar.png",
-        habilidades: ["C++", "C#", "Java"]
-    }];
 
 function Exhibition() {
+
+    const [customers, setCustomers] = useState([]);
+
+      useEffect(() => {
+         list();
+     },[]);
+
+
+     function list(){
+       api.get().then((res) => { 
+         console.log(res.data)
+            setCustomers(res.data);
+      }).catch((err) => {
+        console.log(err);
+      })
+    }
     return (
         <>
             <Helmet title="Exibição de editores" />
             <div className="container">
-                <Sidebar />
-                <div className="row">
-                    {customers.map((customer, index) => (
-                        <div className="col-md-4" key={index}>
-                            <CardPerson
-                                name={customer.nome}
-                                price={customer.precoHora}
-                                personImage={customer.imagem}
-                                skills={customer.habilidades}
-                            />
-                        </div>
+            <Sidebar />
+                <input type="text" placeholder="Pesquisar" className={style.found} />
+                <div className={style.card_boxes}>
+                    {customers?.map((customer, index) => (
+                        <CardPerson
+                            key={index}
+                            name={customer.name}
+                            price={customer.price}
+                            personImage={customer.avatar}
+                            skills={customer.skills}
+                        />
                     ))}
                 </div>
             </div>

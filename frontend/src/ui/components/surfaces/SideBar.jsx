@@ -19,11 +19,10 @@ const Sidebar = () => {
 
         <div className={style.icons}>
           <img src={logo} alt="Logo da editmatch" width={40} height={50} />
-
-          <SidebarIcon image={personPhoto} firstoption="Perfil" thirdoptiion="Sair" />
-          <SidebarIcon image={chat} firstoption="Conversas" />
+          <SidebarIcon image={personPhoto} firstoption="Perfil" ref2="/perfil" thirdoptiion="Sair" ref3="/" />
+          <SidebarIcon image={chat} firstoption="Conversas" ref1="/chat"/>
           <SidebarIcon image={cart} firstoption="Meus Pedidos" />
-          <img src={grafico} alt="Grafico"  />
+          <a href="#"><img src={grafico} alt="Grafico"/></a>
 
         </div>
 

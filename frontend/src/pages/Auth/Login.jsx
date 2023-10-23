@@ -4,8 +4,9 @@ import Footer from "../../ui/components/surfaces/Footer";
 
 import Helmet from 'react-helmet'
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 import style from '../../ui/styles/FormLogin.module.css';
 import imageLogin from '../../ui/images/login.svg'
@@ -13,15 +14,43 @@ import imageLogin from '../../ui/images/login.svg'
 
 function Login() {
 
+    const url = "http://localhost:8080/usuarios/login";
+    const logar = (email, password) => {
+
+        axios.post(url, {
+            email: email,
+            senha: password
+          }, {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
+            .then(response => {
+              if (response.status === 200 && response.data?.token) {
+                sessionStorage.setItem('authToken', response.data.token);
+                sessionStorage.setItem('usuario', response.data.nome);
+      
+                toast.success('Login realizado com sucesso!');
+                navigate('/ExhibitionEditor');
+              } else {
+                throw new Error('Ops! Ocorreu um erro interno.');
+              }
+            })
+            .catch(error => {
+              toast.error(error.message);
+            });
+        };
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        const login = logar(email, password) ? navigate("/ExhibitionEditor") : alert("Email ou senha incorretos")
         console.log(`Email: ${email}, Password: ${password}`);
-        setEmail("")
-        setPassword("");
-
+        setEmail('')
+        setPassword('');
     };
 
 

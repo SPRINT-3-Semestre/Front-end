@@ -11,7 +11,7 @@ function Portfolio() {
                 <div className="row">
                     <div className="col-md-6 mt-4">
                         <img src={defaultPhoto} alt="Foto do editor" width={200} />
-                        <p className={`${style.Editor_name}`}>Nome do editor</p>
+                        <p className='{`${style.Editor_name}`}'>Nome do editor</p>
                     </div>
 
                     <div className="col-md-6">

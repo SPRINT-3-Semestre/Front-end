@@ -1,5 +1,6 @@
 .side {
-    position: absolute;
+    position: fixed;
+    z-index: 1;
     left: 0.01em;
     justify-content: center;
     background: #FF9E00;

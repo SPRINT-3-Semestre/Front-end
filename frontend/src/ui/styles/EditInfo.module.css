@@ -1,0 +1,33 @@
+.configCard{
+    background-color: #FFAA38;
+    border-radius: 12px;   
+    height: 98%;
+    margin-top: 1em;
+}
+
+.configCard h5{
+    margin-left: 0.8em;
+}
+
+
+.configCard img{
+    margin-left: 1.5em;
+    margin-top: 1em;
+}
+
+.configCard .input{
+    margin-left: 1.5em;
+    margin-top: 1em;
+}
+
+.configCard input,label{
+    width: 90%;
+    margin-left: 15px;
+}
+
+.configCard .button{
+    position: relative;
+    left: 49.5em;
+    margin-top: 5px;
+    width: 10%;
+}

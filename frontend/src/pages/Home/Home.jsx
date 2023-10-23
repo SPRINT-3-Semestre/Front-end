@@ -40,7 +40,7 @@ function Home() {
 
 
                 <div className="row">
-                    <div className='col-md-6'>
+                    <div className='col-6 col-md-6'>
                         <div className={style.home_box2}>
                             <div className={style.home_box_reduced_3}></div>
                             <div className={style.home_box_reduced_4}></div>
