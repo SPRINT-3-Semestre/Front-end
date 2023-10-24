@@ -11,13 +11,13 @@
 
 
 .configCard img{
-    margin-left: 1.5em;
+    margin-left: 2.5em;
     margin-top: 1em;
 }
 
 .configCard .input{
-    margin-left: 1.5em;
     margin-top: 1em;
+    width: 100%;
 }
 
 .configCard input,label{
@@ -26,8 +26,6 @@
 }
 
 .configCard .button{
-    position: relative;
-    left: 49.5em;
-    margin-top: 5px;
-    width: 10%;
+    margin-right: 5em;
+    width: 100%;
 }

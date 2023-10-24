@@ -10,16 +10,16 @@ function EditInfo() {
                 <div className="row">
                     <div className="col-12 col-md-12">
                         <div className={style.configCard}>
-                        <form onSubmit="" method='POST' typeof='multipart/form-data' >
-                            <div className="row">
-                                <div className="col-1 col-md-2">
-                                    <img src={personIcon} alt="Foto da pessoa" width={150}/>
-                                    <input type="file" name="" id="" className={`form-control mt-2 ${style.input}`} />
-                                </div>
+                            <form onSubmit="" method='POST' typeof='multipart/form-data' >
+                                <div className="row">
+                                    <div className="col-1 col-md-2 float-start">
+                                        <img src={personIcon} alt="Foto da pessoa" width={150} />
+                                        <input type="file" name="" id="" className={`form-control mt-2 ${style.input}`} />
+                                    </div>
 
-                                <div className="col-11 col-md-10">
-                                    <div className="content">
-                                        <h5 className='mt-5'>Dados pessoais</h5>
+                                    <div className="col-11 col-md-10">
+                                        <div className="content">
+                                            <h5 className='mt-5'>Dados pessoais</h5>
                                             <div className="row">
                                                 <div className="col-6 col-md-6">
                                                     <label className='form-label'>Nome</label>
@@ -60,11 +60,15 @@ function EditInfo() {
                                                     <input type="text" className='form-control' />
                                                 </div>
                                             </div>
-                                          <input type="submit" className={`btn btn-success ${style.button}`}/>
+                                            <div className="row mt-4">
+                                                <div className="col-md-12">
+                                                    <input type="submit" className={`btn btn-success`} />
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
                         </div>
                     </div>
                 </div>
