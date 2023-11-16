@@ -8,10 +8,8 @@
     }
 
     .home_boxright {
-        position: absolute;
+        position: relative;
         height: 0px;
-        top: 23em;
-        margin-left: -3em;
         width: 0;
         bottom: 20em;
     }
@@ -62,7 +60,7 @@
         position: relative;
         top: 40em;
         right: 2em;
-        width: 269px;
+        width: 234px;
         height: 196px;
         flex-shrink: 0;
         border: 3px solid #FFAA38;
@@ -72,7 +70,7 @@
         position: relative;
         top: 10em;
         left: 25em;
-        width: 269px;
+        width: 234px;
         height: 196px;
         flex-shrink: 0;
         border: 3px solid #FFAA38;
