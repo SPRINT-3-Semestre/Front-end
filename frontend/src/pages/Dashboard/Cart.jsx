@@ -6,7 +6,6 @@ import axios from 'axios';
 
 function Cart() {
 
-    const [qtdItens, setQtdItens] = useState(0);
     const [totalValue, setTotalValue] = useState(0);
     const [cart, setCart] = useState([]);
 
@@ -28,7 +27,7 @@ function Cart() {
 
     return (
         <>
-            <Helmet title={`Carrinho (${qtdItens} itens) `} />
+            <Helmet title={`Carrinho  (itens) `} />
             <Sidebar />
             <div className="container">
                 <div className="row">

@@ -1,0 +1,83 @@
+.header_chat {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.header_chat img {
+    border-radius: 48px;
+}
+
+.header_chat .button_proposal{
+    background-color: green;
+    border-radius: 6px;
+    border: 0;
+    color: white;
+}
+
+.header_chat .button_proposal img{
+    background-color: transparent;
+    margin-left: 5px;
+    width: 20px;
+}
+
+.chat_background {
+    border: 1px solid yellow;
+    height: 75vh;
+    overflow-y: scroll;
+   -webkit-overflow-scrolling: touch;
+
+}
+
+.chat_background::-webkit-scrollbar {
+    width: 12px;
+}
+
+.message_box {
+    margin-left: 1em;
+    margin-top: 2em;
+    border-radius: 8px;
+    background-color: #1a1a1a;
+}
+
+.message_box_right {
+    position: relative;
+    left: 33em;
+    margin-left: 1em;
+    margin-top: 5em;
+    border-radius: 8px;
+    background-color: #1a1a1ad7;
+
+}
+
+.message_left {
+    color: white;
+    margin-left: 1em;
+}
+
+.message_right {
+    color: white;
+    margin-left: 1em;
+}
+
+.send{
+    position: absolute;
+    background-color: transparent;
+    border: 0px;
+    bottom: 1.6em;
+    left: 74em;
+    transform: scale(1.1);
+
+}
+
+.send:hover{
+    cursor: pointer;
+    transition: 0.1s;
+    transform: scale(1.5);
+}
