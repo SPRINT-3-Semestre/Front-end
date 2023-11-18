@@ -7,26 +7,30 @@ import axios from 'axios';
 function EditInfo() {
 
     // Código da API ViaCep
-    const [cep, setCep] = useState('');
-    const [logradouro, setLogradouro] = useState('');
-    const [bairro, setBairro] = useState('');
-    const [localidade, setLocalidade] = useState('');
-    const [uf, setUf] = useState('');
-
-    const handleCepChange = (event) => {
-        setCep(event.target.value);
-    };
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        try {
+        const [cep, setCep] = useState('');
+        const [logradouro, setLogradouro] = useState('');
+        const [bairro,setBairro] = useState('');
+        const [localidade, setLocalidade] = useState('');
+        const [uf, setUf] = useState('');
+        const [numero, setNumero] = useState('');
+        const [complemento, setComplemento] = useState('');
+      
+        const handleCepChange = (event) => {
+          setCep(event.target.value);
+        };
+      
+        const handleSubmit = async (event) => {
+          event.preventDefault();
+      
+          try {
             const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
             setLogradouro(response.data.logradouro);
             setBairro(response.data.bairro);
             setLocalidade(response.data.localidade);
             setUf(response.data.uf);
-            console.log(response.data.uf)
+            setNumero(response.data.numero);
+            setCep(response.data.cep);
+            setComplemento(response.data.complemento);
             console.log(response.data)
         } catch (error) {
             console.error(error);
@@ -36,6 +40,28 @@ function EditInfo() {
         }
     };
 
+        const saveInfo = async (event) => {
+            axios.post(`http://localhost:8080/enderecos/${sessionStorage.getItem('userId')}`, {
+                cidade: localidade,
+                cep: cep,
+                logradouro: logradouro,
+                complemento: complemento,
+                estado: uf,
+                bairro: bairro,
+                numero: numero,
+            },
+            {
+                headers: {
+                    'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'), 
+                    'Content-Type': 'application/json',
+                }
+            }).then((res) => {
+                console.log(res.data)
+            }).catch((err) => {
+                console.log(err);
+            })
+        }
+
     return (
         <>
             <Sidebar />
@@ -43,7 +69,6 @@ function EditInfo() {
                 <div className="row">
                     <div className="float-center col-12 col-md-12">
                         <div className={style.configCard}>
-                            <form method='POST' typeof='multipart/form-data' >
                                 <div className="row">
                                     <div className="col-1 col-md-2 float-start">
                                         <img src={personIcon} alt="Foto da pessoa" width={150} />
@@ -109,13 +134,12 @@ function EditInfo() {
                                             </div>
                                             <div className="row mt-4">
                                                 <div className="col-md-12">
-                                                    <input type="submit" className={`btn btn-success`} />
+                                                    <button type="submit" onClick={saveInfo} className={`btn btn-success`}> Enviar </button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
                         </div>
                     </div>
                 </div>

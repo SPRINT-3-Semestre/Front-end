@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import CardPerson from "../../ui/components/CardPerson";
 import Sidebar from "../../ui/components/surfaces/SideBar";
 import style from "../../ui/styles/Exhibition.module.css";
-import api from "../../Api";
+import axios from 'axios';
 
 
 function Exhibition() {
@@ -16,7 +16,7 @@ function Exhibition() {
 
 
      function list(){
-       api.get().then((res) => { 
+       axios.get("http://localhost:8080/editores/listar-resumo").then((res) => { 
          console.log(res.data)
             setCustomers(res.data);
       }).catch((err) => {
@@ -33,10 +33,10 @@ function Exhibition() {
                     {customers?.map((customer, index) => (
                         <CardPerson
                             key={index}
-                            name={customer.name}
-                            price={customer.price}
-                            personImage={customer.avatar}
-                            skills={customer.skills}
+                            name={customer.nome}
+                            price={customer.valorHora}
+                            personImage={customer.photo_profile}
+                            skills={customer.habilidades}
                         />
                     ))}
                 </div>
