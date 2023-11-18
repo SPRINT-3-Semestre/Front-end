@@ -3,9 +3,10 @@ import Footer from "../../ui/components/surfaces/Footer";
 
 
 import Helmet from 'react-helmet'
-import { useState } from 'react';
-import { Link, redirect } from 'react-router-dom';
 
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 import style from '../../ui/styles/FormRegister.module.css';
 import imageRegister from '../../ui/images/register.svg'
@@ -18,21 +19,38 @@ function Register() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const handleSubmit = (event) => {
+    const navigate = useNavigate();
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(`Email: ${email}, Password: ${password}`);
 
-
-        if(password !== confirmPassword){
+        if (password !== confirmPassword) {
             alert("As senhas não coincidem");
             setPassword("");
             setConfirmPassword("");
-
             return;
         }
 
-        return redirect("/login");
+        try {
+            // Fazer a chamada para o endpoint de cadastro
+            const response = await axios.post("http://localhost:8080/usuarios", {
+                nome: nome,
+                email: email,
+                password: password
+            });
 
+            console.log(response);
+
+            if (response.status === 200) {
+                alert("Cadastro realizado com sucesso!");
+                navigate("/login"); 
+            } else {
+                alert("Ops! Ocorreu um erro durante o cadastro.");
+            }
+        } catch (error) {
+            console.error("Erro durante o cadastro:", error);
+            alert("Ops! Ocorreu um erro durante o cadastro.");
+        }
     };
 
 
@@ -101,7 +119,7 @@ function Register() {
                                     <Link to="/login" className={style.link_right}>Ja tem cadastro?</Link>
                                 </div>
                             </div>
-                            <button type="submit" className="text-center">
+                            <button type="submit " onClick={handleSubmit} className="text-center">
                                 Cadastro
                             </button>
                         </form>
