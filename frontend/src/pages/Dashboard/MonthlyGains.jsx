@@ -49,20 +49,20 @@ function MonthlyGains() {
                                     <h4 className="card-title text-center">Ganhos Mensais</h4>
                                     <select
                                         className="form-control"
-                                        value={selectedMonth}
+                                        defaultValue={selectedMonth}
                                         onChange={(e) => setSelectedMonth(e.target.value)}>
-                                        <option value="Janeiro">Janeiro</option>
-                                        <option value="Fevereiro">Fevereiro</option>
-                                        <option value="Março">Março</option>
-                                        <option value="Abril">Abril</option>
-                                        <option value="Maio">Maio</option>
-                                        <option value="Junho">Junho</option>
-                                        <option value="Julho">Julho</option>
-                                        <option value="Agosto">Agosto</option>
-                                        <option value="Setembro">Setembro</option>
-                                        <option value="Outubro">Outubro</option>
-                                        <option value="Novembro">Novembro</option>
-                                        <option value="Dezembro">Dezembro</option>
+                                        <option defaultValue="Janeiro">Janeiro</option>
+                                        <option defaultValue="Fevereiro">Fevereiro</option>
+                                        <option defaultValue="Março">Março</option>
+                                        <option defaultValue="Abril">Abril</option>
+                                        <option defaultValue="Maio">Maio</option>
+                                        <option defaultValue="Junho">Junho</option>
+                                        <option defaultValue="Julho">Julho</option>
+                                        <option defaultValue="Agosto">Agosto</option>
+                                        <option defaultValue="Setembro">Setembro</option>
+                                        <option defaultValue="Outubro">Outubro</option>
+                                        <option defaultValue="Novembro">Novembro</option>
+                                        <option defaultValue="Dezembro">Dezembro</option>
                                     </select>
                                 </div>
                             </div>

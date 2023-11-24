@@ -1,6 +1,6 @@
-import personIcon from '../../ui/images/personicon.png'
-import Sidebar from '../../ui/components/surfaces/SideBar';
-import style from '../../ui/styles/EditInfo.module.css'
+import personIcon from '../../../ui/images/personicon.png'
+import Sidebar from '../../../ui/components/surfaces/SideBar';
+import style from '../../../ui/styles/EditInfo.module.css'
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -81,11 +81,11 @@ function EditInfo() {
                                             <div className="row">
                                                 <div className="col-6 col-md-6">
                                                     <label className='form-label'>Nome</label>
-                                                    <input type="text" className='form-control' />
+                                                    <input type="text" className='form-control' defaultValue={sessionStorage.getItem('usuario')}/>
                                                 </div>
                                                 <div className="col-6 col-md-6">
                                                     <label className='form-label'>Email</label>
-                                                    <input type="text" className='form-control' />
+                                                    <input type="text" className='form-control' defaultValue={sessionStorage.getItem('userEmail')}/>
                                                 </div>
                                             </div>
                                             <div className="row mt-5">

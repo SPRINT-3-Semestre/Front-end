@@ -1,20 +1,17 @@
 import Footer from "../../ui/components/surfaces/Footer";
-import Header_home from "../../ui/components/surfaces/Header_home";
-
+import HeaderHome from "../../ui/components/surfaces/Header_home";
 import style from '../../ui/styles/ContentHome.module.css'
 import { Link } from 'react-router-dom';
 import Helmet from 'react-helmet'
 import Header from "../../ui/components/surfaces/Header";
-
 
 function Home() {
     return (
         <>
             <Helmet title="EditMatch - Home" />
             <Header />
-            <Header_home />
+            <HeaderHome />
             <div className='container'>
-
                 <div className="row">
                     <div className="col-md-6">
                         <div className={style.home_box}>
@@ -32,7 +29,7 @@ function Home() {
                         <div className={style.home_boxright}>
                             <div className={style.home_box_reduced_1}></div>
                             <div className={style.home_box_reduced_2}></div>
-                            <img className={style.home_image}></img>
+                            <img className={style.home_image} alt="Editores de video"></img>
                         </div>
                     </div>
 
@@ -44,13 +41,13 @@ function Home() {
                         <div className={style.home_box2}>
                             <div className={style.home_box_reduced_3}></div>
                             <div className={style.home_box_reduced_4}></div>
-                            <img className={style.home_image2}></img>
+                            <img className={style.home_image2} alt="editores de video 2"></img>
                         </div>
                     </div>
 
                     <div className='col-md-6'>
                         <div className={style.home_boxright2}>
-                            <div class="text-center">
+                            <div className="text-center">
                                 <h3 className="mt-4">O que você está esperando?</h3>
                                 <p className="fs-4">
                                     Junte-se á nossa comunidade de clientes satistfeitos!

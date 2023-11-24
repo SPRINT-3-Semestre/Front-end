@@ -30,11 +30,12 @@ function Login() {
                 sessionStorage.setItem('authToken', response.data.token);
                 sessionStorage.setItem('usuario', response.data.nome);
                 sessionStorage.setItem('userId', response.data.userId);
+                sessionStorage.setItem('userEmail', response.data.email);
+                sessionStorage.setItem('userType', response.data.tipo);
 
-                console.log(response.data);
       
                 toast.success('Login realizado com sucesso!');
-                navigate('/ExhibitionEditor');
+                navigate('/exposicao-editor');
               } else {
                 throw new Error('Ops! Ocorreu um erro interno.');
               }
@@ -50,7 +51,7 @@ function Login() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const login = logar(email, password) ? navigate("/ExhibitionEditor") : alert("Email ou senha incorretos")
+        const login = logar(email, password)
         console.log(`Email: ${email}, Password: ${password}`);
         setEmail('')
         setPassword('');
@@ -75,7 +76,7 @@ function Login() {
                                     id="InputEmail"
                                     aria-describedby="emailHelp"
                                     placeholder="Digite seu email"
-                                    value={email}
+                                    defaultValue={email}
                                     onChange={(event) => setEmail(event.target.value)}
                                     required
                                 />
@@ -87,7 +88,7 @@ function Login() {
                                     className="form-control"
                                     id="InputPassword"
                                     placeholder="Digite sua senha"
-                                    value={password}
+                                    defaultValue={password}
                                     onChange={(event) => setPassword(event.target.value)}
                                     required
                                 />

@@ -50,10 +50,9 @@
     position: relative;
     left: 33em;
     margin-left: 1em;
-    margin-top: 5em;
+    margin-top: 2em;
     border-radius: 8px;
-    background-color: #1a1a1ad7;
-
+    background-color: #1a1a1a;
 }
 
 .message_left {

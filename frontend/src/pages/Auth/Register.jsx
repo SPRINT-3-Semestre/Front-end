@@ -59,7 +59,7 @@ function Register() {
             <Helmet title="EditMatch - Cadastro" />
             <Header />
             <div className="container">
-                <img src={imageRegister} className={style.login_image} />
+                <img src={imageRegister} className={style.login_image} alt="Imagem de arvore roxa " />
                 <div className="row mr-5">
                     <div className="col-12 col-md-12">
                         <form onSubmit={handleSubmit} className={style.form_login}>
@@ -72,7 +72,7 @@ function Register() {
                                     id="inputName"
                                     aria-describedby="NameHelp"
                                     placeholder="Digite seu nome"
-                                    value={nome}
+                                    defaultValue={nome}
                                     onChange={(event) => setNome(event.target.value)}
                                     required
                                 />
@@ -85,7 +85,7 @@ function Register() {
                                     id="InputEmail"
                                     aria-describedby="emailHelp"
                                     placeholder="Digite seu email"
-                                    value={email}
+                                    defaultValue={email}
                                     onChange={(event) => setEmail(event.target.value)}
                                     required
                                 />
@@ -97,7 +97,7 @@ function Register() {
                                     className="form-control"
                                     id="InputPassword"
                                     placeholder="Digite sua senha"
-                                    value={password}
+                                    defaultValue={password}
                                     onChange={(event) => setPassword(event.target.value)}
                                     required
                                 />
@@ -109,7 +109,7 @@ function Register() {
                                     className="form-control"
                                     id="InputConfirmPassword"
                                     placeholder="Confirme sua senha"
-                                    value={confirmPassword}
+                                    defaultValue={confirmPassword}
                                     onChange={(event) => setConfirmPassword(event.target.value)}
                                     required
                                 />
