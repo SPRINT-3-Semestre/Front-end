@@ -1,19 +1,15 @@
-import Header from "../../ui/components/surfaces/Header";
-import Footer from "../../ui/components/surfaces/Footer";
-
-
-import Helmet from 'react-helmet'
-
+// Register.jsx
+import { Helmet } from 'react-helmet';
+import Header from '../../ui/components/surfaces/Header';
+import Footer from '../../ui/components/surfaces/Footer';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-
 import style from '../../ui/styles/FormRegister.module.css';
-import imageRegister from '../../ui/images/register.svg'
-
+import imageRegister from '../../ui/images/register.svg';
 
 function Register() {
-
+    const { type } = useParams();
     const [email, setEmail] = useState('');
     const [nome, setNome] = useState('');
     const [password, setPassword] = useState('');
@@ -33,17 +29,18 @@ function Register() {
 
         try {
             // Fazer a chamada para o endpoint de cadastro
-            const response = await axios.post("http://localhost:8080/usuarios", {
+            const response = await axios.post(type === 'editor' ? 'http://localhost:8080/editores' : 'http://localhost:8080/clientes', {
                 nome: nome,
                 email: email,
-                password: password
+                password: password,
+                isEditor: type === 'editor' ? true : false
             });
 
             console.log(response);
 
             if (response.status === 200) {
                 alert("Cadastro realizado com sucesso!");
-                navigate("/login"); 
+                navigate("/login");
             } else {
                 alert("Ops! Ocorreu um erro durante o cadastro.");
             }
@@ -52,7 +49,6 @@ function Register() {
             alert("Ops! Ocorreu um erro durante o cadastro.");
         }
     };
-
 
     return (
         <>
@@ -65,61 +61,61 @@ function Register() {
                         <form onSubmit={handleSubmit} className={style.form_login}>
                             <h1 className={style.title}>Cadastro</h1>
                             <div className="form-group">
-                                <label htmlFor="InputEmail">Nome</label>
+                                <label htmlFor="inputName">Nome</label>
                                 <input
                                     type="text"
                                     className="form-control"
                                     id="inputName"
-                                    aria-describedby="NameHelp"
+                                    aria-describedby="nameHelp"
                                     placeholder="Digite seu nome"
-                                    defaultValue={nome}
+                                    value={nome}
                                     onChange={(event) => setNome(event.target.value)}
                                     required
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="InputEmail">Email</label>
+                                <label htmlFor="inputEmail">Email</label>
                                 <input
                                     type="email"
                                     className="form-control"
-                                    id="InputEmail"
+                                    id="inputEmail"
                                     aria-describedby="emailHelp"
                                     placeholder="Digite seu email"
-                                    defaultValue={email}
+                                    value={email}
                                     onChange={(event) => setEmail(event.target.value)}
                                     required
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="InputPassword">Senha</label>
+                                <label htmlFor="inputPassword">Senha</label>
                                 <input
                                     type="password"
                                     className="form-control"
-                                    id="InputPassword"
+                                    id="inputPassword"
                                     placeholder="Digite sua senha"
-                                    defaultValue={password}
+                                    value={password}
                                     onChange={(event) => setPassword(event.target.value)}
                                     required
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="InputConfirmPassword">Confirmar senha</label>
+                                <label htmlFor="inputConfirmPassword">Confirmar senha</label>
                                 <input
                                     type="password"
                                     className="form-control"
-                                    id="InputConfirmPassword"
+                                    id="inputConfirmPassword"
                                     placeholder="Confirme sua senha"
-                                    defaultValue={confirmPassword}
+                                    value={confirmPassword}
                                     onChange={(event) => setConfirmPassword(event.target.value)}
                                     required
                                 />
                             </div>
                             <div className="row d-flex">
                                 <div className="col-md-6 mr-2">
-                                    <Link to="/login" className={style.link_right}>Ja tem cadastro?</Link>
+                                    <Link to="/login" className={style.link_right}>Já tem cadastro?</Link>
                                 </div>
                             </div>
-                            <button type="submit " onClick={handleSubmit} className="text-center">
+                            <button type="submit" onClick={handleSubmit} className="text-center">
                                 Cadastro
                             </button>
                         </form>
@@ -130,4 +126,5 @@ function Register() {
         </>
     )
 }
+
 export default Register;

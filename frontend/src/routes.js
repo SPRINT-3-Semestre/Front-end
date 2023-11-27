@@ -9,6 +9,7 @@ import Cart from './pages/Dashboard/Cart';
 import Chat from './pages/Dashboard/User/Chat';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import RegisterSelection from './pages/Auth/RegisterSelection';
 
 function Rotas() {
   return (
@@ -28,10 +29,9 @@ function Rotas() {
           ) : (
             <>
               <Route path="*" element={<Home />} />
-              <Route path="/home" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="*" element={<Home />} />
+              <Route path="/register-seletor" element={<RegisterSelection />} />
             </>
           )}
         </Routes>

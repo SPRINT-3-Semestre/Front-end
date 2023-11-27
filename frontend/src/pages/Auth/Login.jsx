@@ -32,7 +32,6 @@ function Login() {
                 sessionStorage.setItem('userId', response.data.userId);
                 sessionStorage.setItem('userEmail', response.data.email);
                 sessionStorage.setItem('userType', response.data.tipo);
-
       
                 toast.success('Login realizado com sucesso!');
                 navigate('/exposicao-editor');
