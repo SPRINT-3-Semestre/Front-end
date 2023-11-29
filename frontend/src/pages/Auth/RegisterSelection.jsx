@@ -10,13 +10,12 @@ function RegisterSelection() {
 
     const handleClick = (type) => {
         if (type === 'editor') {
-            setRota('http://localhost:8080/editor');
-            navigate('/register/editor');
+          navigate('/register', { state: { rota: 'http://localhost:8080/editores' } });
         } else {
-            setRota('http://localhost:8080/cliente');
-            navigate('/register/cliente');
+          navigate('/register', { state: { rota: 'http://localhost:8080/clientes' } });
         }
-    }
+      };
+      
 
     return (
         <>

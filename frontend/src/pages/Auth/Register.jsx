@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import Header from '../../ui/components/surfaces/Header';
 import Footer from '../../ui/components/surfaces/Footer';
 import { useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams ,useLocation} from 'react-router-dom';
 import axios from 'axios';
 import style from '../../ui/styles/FormRegister.module.css';
 import imageRegister from '../../ui/images/register.svg';
@@ -14,8 +14,12 @@ function Register() {
     const [nome, setNome] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const { rota } = useLocation().state;
 
     const navigate = useNavigate();
+
+    const endpoint = rota;
+    console.log(endpoint)
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -28,12 +32,11 @@ function Register() {
         }
 
         try {
-            // Fazer a chamada para o endpoint de cadastro
-            const response = await axios.post(type === 'editor' ? 'http://localhost:8080/editores' : 'http://localhost:8080/clientes', {
+            const response = await axios.post(endpoint, {
                 nome: nome,
                 email: email,
                 password: password,
-                isEditor: type === 'editor' ? true : false
+                isEditor: endpoint === 'http://localhost:8080/editores' ? true : false
             });
 
             console.log(response);

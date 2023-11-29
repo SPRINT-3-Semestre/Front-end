@@ -15,8 +15,18 @@ function Exhibition() {
      },[]);
 
 
+    //  function list(){
+    //    axios.get("http://localhost:8080/editores/listar-resumo").then((res) => { 
+    //      console.log(res.data)
+    //         setCustomers(res.data);
+    //   }).catch((err) => {
+    //     console.log(err);
+    //   })
+    // }
+
+
      function list(){
-       axios.get("http://localhost:8080/editores/listar-resumo").then((res) => { 
+       axios.get("https://6531c22a4d4c2e3f333d44b4.mockapi.io/Editores/Editores").then((res) => { 
          console.log(res.data)
             setCustomers(res.data);
       }).catch((err) => {

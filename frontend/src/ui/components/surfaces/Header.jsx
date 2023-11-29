@@ -25,7 +25,7 @@ function Header() {
           </Navbar.Brand>
           <Nav>
             <Link to="/login" className={`btn btn-primary text-white ${style.button} secondary_color`}>Login</Link>
-            <Link to="/register" className={`btn btn-primary text-white ${style.button} secondary_color`}>Registro</Link>
+            <Link to="/register-seletor" className={`btn btn-primary text-white ${style.button} secondary_color`}>Registro</Link>
           </Nav>
         </Container>
       </Navbar>

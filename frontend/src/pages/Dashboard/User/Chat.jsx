@@ -2,11 +2,17 @@ import React, { useEffect, useState } from 'react';
 import SockJS from 'sockjs-client';
 import { Stomp } from '@stomp/stompjs';
 
+const heartbeatInterval = 10000; // Heartbeat interval in milliseconds
+
 const WebSocketComponent = () => {
   const [socketStatus, setSocketStatus] = useState('');
   const [messages, setMessages] = useState([]);
   const [stompClient, setStompClient] = useState(null);
   const [messageInput, setMessageInput] = useState('');
+
+  const sendHeartbeat = () => {
+    stompClient.send('/topic/heartbeat', {}, '{}');
+  };
 
   useEffect(() => {
     const socket = new SockJS('http://localhost:8080/websocket');
@@ -21,6 +27,16 @@ const WebSocketComponent = () => {
       });
 
       setStompClient(client);
+
+      // Start heartbeat timer
+      const heartbeatTimer = setInterval(sendHeartbeat, heartbeatInterval);
+
+      return () => {
+        clearInterval(heartbeatTimer);
+        if (stompClient) {
+          stompClient.disconnect();
+        }
+      };
     });
 
     return () => {
@@ -37,13 +53,14 @@ const WebSocketComponent = () => {
 
   const sendMessage = () => {
     const messageContent = { content: messageInput };
-    // Adiciona a mensagem ao estado local antes mesmo de ser enviada
+
+    // Add message to local state before sending
     setMessages((prevMessages) => [...prevMessages, JSON.stringify(messageContent)]);
 
-    // Envia a mensagem para o servidor WebSocket
+    // Send message to WebSocket server
     stompClient.send('/app/sendMessage', {}, JSON.stringify(messageContent));
 
-    // Limpa o campo de entrada
+    // Clear input field
     setMessageInput('');
   };
 
