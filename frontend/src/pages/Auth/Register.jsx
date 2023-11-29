@@ -3,13 +3,12 @@ import { Helmet } from 'react-helmet';
 import Header from '../../ui/components/surfaces/Header';
 import Footer from '../../ui/components/surfaces/Footer';
 import { useState } from 'react';
-import { Link, useNavigate, useParams ,useLocation} from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import style from '../../ui/styles/FormRegister.module.css';
 import imageRegister from '../../ui/images/register.svg';
 
 function Register() {
-    const { type } = useParams();
     const [email, setEmail] = useState('');
     const [nome, setNome] = useState('');
     const [password, setPassword] = useState('');
@@ -41,7 +40,7 @@ function Register() {
 
             console.log(response);
 
-            if (response.status === 200) {
+            if (response.status === 201) {
                 alert("Cadastro realizado com sucesso!");
                 navigate("/login");
             } else {
