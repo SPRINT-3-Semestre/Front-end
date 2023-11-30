@@ -8,4 +8,12 @@
 
   .button {
     margin-left: 1em;
+    color: black;
+    font-weight: 500;
+  }
+
+  .button:hover {
+    background-color: #fff;
+    color: #240046;
+
   }

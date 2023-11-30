@@ -1,168 +1,81 @@
-    .home_box {
-        margin-top: 2em;
-        margin-left: -8em;
-        width: 33.75em;
-        height: 450px;
-        flex-shrink: 0;
-        border: 3px solid #FFAA38;
-    }
-
-    .home_boxright {
-        position: relative;
-        height: 0px;
-        width: 0;
-        bottom: 20em;
-    }
-
-    .home_box2 {
-        position: relative;
-        height: 0;
-        bottom: 12em;
-        margin-left: -6.5em;
-        flex-shrink: 0;
-    }
-
-    .home_text {
-        color: #000;
-        font-size: 20px;
-        font-style: normal;
-        margin-top: 1em;
-        line-height: normal;
-        text-wrap: wrap;
-        margin-left: 1em;
-    }
-
-    .home_boxright2 {
-        display: flex;
-        position: relative;
-        top: 8em;
-        width: 540px;
-        height: 450px;
-        margin-left: 5em;
-        flex-shrink: 0;
-        border: 3px solid #FFAA38;
-    }
-
-    .home_button {
-        background: #FFAA38;
-        color: black;
-        font-weight: bold;
-        margin-top: 14em;
-        margin-left: 8em;
-    }
-
-    .home_button:hover {
-        background: #3F0B75;
-        color: whitesmoke;
-    }
-
-    .home_box_reduced_1 {
-        position: relative;
-        top: 40em;
-        right: 2em;
-        width: 234px;
-        height: 196px;
-        flex-shrink: 0;
-        border: 3px solid #FFAA38;
-    }
-
-    .home_box_reduced_2 {
-        position: relative;
-        top: 10em;
-        left: 25em;
-        width: 234px;
-        height: 196px;
-        flex-shrink: 0;
-        border: 3px solid #FFAA38;
-    }
-
-    .home_box_reduced_3 {
-        position: relative;
-        top: 37em;
-        left: 25em;
-        width: 269px;
-        height: 196px;
-        flex-shrink: 0;
-        border: 3px solid #FFAA38;
-    }
-
-    .home_box_reduced_4 {
-        position: relative;
-        top: 8em;
-        right: 1em;
-        width: 269px;
-        height: 196px;
-        flex-shrink: 0;
-        border: 3px solid #FFAA38;
-    }
-
-    .home_image {
-        background-image: url('../images/person.png');
-        background-size: cover;
-        background-repeat: no-repeat;
-        box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
-        width: 600px;
-        height: 360px;
-        position: relative;
-    }
-
-    .home_image2 {
-        background-image: url('../images/person.png');
-        background-size: cover;
-        background-repeat: no-repeat;
-        box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
-        width: 600px;
-        height: 360px;
-        position: relative;
-    }
-
-    .common_questions {
-        margin-top: 25em;
-    }
-
-@media (max-width: 414px) {
-    .home_box {
-        position: relative;
-        left: 8em;
-        width: 100%;
-        height: 25vh;
-        margin-top: 1em;
-        border: 3px solid #FFAA38;
-    }
-
-    .home_text {
-        font-size: 20px;
-        text-align: center;
-    }
-
-    .home_button {
-        margin-top: 1em;
-        margin-left: 5em;
-    }
-
-    .home_boxright {
-        margin-left: 0;
-        height: auto;
-        width: 100%;
-        bottom: 0;
-    }
-
-    .home_box2,
-    .home_box_reduced_1,
-    .home_box_reduced_2,
-    .home_box_reduced_3,
-    .home_box_reduced_4 {
-        display: none;
-    }
-
-    .home_image,
-    .home_image2 {
-        display: none;
-    }
-
-    .home_boxright2 {
-        right: 5em;
-        bottom: 0;
-        width: 100%;
-    }
+.image {
+    display: flex;
+    margin-top: 1em;
+    margin-left: 5em;
+    height: 384px;
 }
+
+.title {
+    font: 'Montserrat';
+    color: #FC9B1E;
+    text-wrap: nowrap;
+    font-size: 32px;
+    color: FC9B1E;
+}
+
+.subtitle {
+    font: 'Montserrat';
+    color: #1F1F1F;
+    font-size: 16px;
+}
+
+.button {
+    font: 'Montserrat';
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 8px;
+    background: #240046;
+    padding: 0.5em 1em;
+}
+
+.benefits{
+    display: flex;
+    margin-top: 1em;
+    gap: 1em;
+}
+
+
+.header{
+    background-image: url('../images/background-header.png');
+    background-size: cover;
+    background-position: center;
+    height: 120vh;
+    overflow: hidden;
+}
+
+.boxImage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.boxImage img{
+    margin-top: 5em;
+    width: 130px;
+    height: 132px;
+}
+
+.logo{
+    position: relative;
+    right: 15em;
+    top: 5em;
+}
+
+.text{
+    margin-top: 0.5em;
+    color: #FFF;
+    text-align: center;
+    font: 'Montserrat';
+    font-size: 42px;
+}
+
+.textColor{
+color: #3F0B75;
+}
+
+.logo p{
+    font: 'Montserrat';
+    position: relative;
+    left: 26em;
+}
+

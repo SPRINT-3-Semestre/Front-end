@@ -4,7 +4,7 @@ import defaultPhoto from '../../images/personicon.png'
 import cart from '../../images/Cart.svg'
 import grafico from '../../images/Grafico.svg'
 import chat from '../../images/Vector-1.svg'
-import logo from '../../images/logo.png'
+import logo from '../../images/logoAtt.png'
 import SidebarIcon from "../SideBarIcon";
 import { useNavigate } from 'react-router-dom';
 

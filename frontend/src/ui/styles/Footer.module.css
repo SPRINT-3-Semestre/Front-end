@@ -1,7 +1,8 @@
 
 footer{
-    width: 99.8vw;
+    width: 99.6vw;
     background-color: #FF9E00;
     position: relative;
     top: 5em;
+    overflow: hidden;
 }

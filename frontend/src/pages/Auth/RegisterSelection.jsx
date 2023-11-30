@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 
 function RegisterSelection() {
     const navigate = useNavigate();
-    const [rota, setRota] = useState('');
 
     const handleClick = (type) => {
         if (type === 'editor') {

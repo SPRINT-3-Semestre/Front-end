@@ -38,7 +38,7 @@ function Register() {
                 isEditor: endpoint === 'http://localhost:8080/editores' ? true : false
             });
 
-            console.log(response);
+            console.log(response.status);
 
             if (response.status === 201) {
                 alert("Cadastro realizado com sucesso!");
