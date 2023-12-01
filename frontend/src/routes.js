@@ -18,7 +18,13 @@ function Rotas() {
         <Routes>
           {sessionStorage.getItem('authToken') != null ? (
             <>
-             z
+              <Route path="*" element={<Exhibition />} />
+              <Route path="/exposicao-editor" element={<Exhibition />} />
+              <Route path="/portfolio/editor" element={<Portfolio />} />{/*Precisa colocar um id*/}
+              <Route path="/editar-informacoes" element={<EditInfo />} />
+              <Route path="/ganhos-mensais" element={<MonthlyGains />} />
+              <Route path="/carrinho" element={<Cart />} />
+              <Route path="/chat" element={<Chat />} />
             </>
           ) : (
             <>
