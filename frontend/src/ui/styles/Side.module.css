@@ -26,18 +26,38 @@
     cursor: pointer;
 }
 
+.icons img:hover{
+    transition: 0.5s;
+    transform: scale(1.2);
+}
+
 .sidebar_content {
     position: relative;
     width: 12vw;
-    margin-top: -2em;
+    top: -2em; 
     border-radius: 0px 12px 12px 0px;
     left: 4em;
     background-color: #FF9E00;
     color: black;
-    transition: 1s;
     z-index: 1;
-}
+    transition: top 0.5s ease-in-out;
+  }
 
+  .sidebar_content a{
+    text-decoration: none;
+    color: black;
+  }
+
+  .sidebar_content a:hover{
+      color: blue;
+      transition: 0.5s;
+      transform: scale(1.2);
+  }
+  
+  .sidebar_content.active {
+    top: 0; /* Final state: visible within the viewport */
+  }
+  
 
 .sidebar_content ul {
     display: flex;

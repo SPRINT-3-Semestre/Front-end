@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 function Pedido() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [skills, setSkills] = useState('');
+
+  const backgroundModalRef = useRef(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -12,7 +14,7 @@ function Pedido() {
 
   return (
     <>
-      <div className="background-modal" style={{
+      <div ref={backgroundModalRef} className="background-modal" style={{
          display: "none",
          position: "fixed",
          top: 0,
@@ -71,6 +73,10 @@ function Pedido() {
                 />
               </div>
 
+              <button type="button" className="btn btn-default" onClick={() => {
+                backgroundModalRef.current.style.display = 'none';
+              }}>Cancelar</button>
+
               {/* Move the submit button to the right */}
               <button type="submit" className="btn btn-primary" style={{ marginRight: '10px' }}>Enviar</button>
             </form>
@@ -79,6 +85,6 @@ function Pedido() {
       </div>
     </>
   );
-};
+}
 
 export default Pedido;

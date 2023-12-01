@@ -36,30 +36,37 @@ function Exhibition() {
       <Helmet title="Exibição de editores" />
       <Sidebar />
       <div className="container">
+
         <div className="row">
-          <div className="col-md-6">
+
+          <div className="col-6 col-md-6">
             <input type="text" placeholder="Pesquisar" className={style.found} />
           </div>
 
-          <div className="col-md-6">
-            <button className="btn btn-primary" onClick={toggleModal}>
+          <div className="col-6 col-md-6">
+            <button className={`btn btn-primary ${style.order}`} onClick={toggleModal}>
               Fazer Pedido
             </button>
 
-            {showModal && <Pedido />} {/* Conditionally render the modal */}
+            {showModal && <Pedido />}
           </div>
+
         </div>
 
-        <div className={style.card_boxes}>
-          {customers?.map((customer, index) => (
-            <CardPerson
-              key={index}
-              name={customer.nome}
-              price={customer.valorHora}
-              personImage={customer.photo_profile}
-              skills={customer.habilidades}
-            />
-          ))}
+        <div className="row">
+          <div className="col-md-12">
+            <div className={style.card_boxes}>
+              {customers?.map((customer, index) => (
+                <CardPerson
+                  key={index}
+                  name={customer.nome}
+                  price={customer.valorHora}
+                  personImage={customer.photo_profile}
+                  skills={customer.habilidades}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </>

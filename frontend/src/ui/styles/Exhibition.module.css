@@ -14,7 +14,13 @@
     height: 50px;
     flex-shrink: 0;
     border-radius: 5px;
-    background: #D9D9D9;
+    background: #fff;
     top: 4em;
-    left: 1em;
+    left: 2em;
+}
+
+.order{
+    position: relative;
+    top: 4em;
+    left: 29em;
 }
