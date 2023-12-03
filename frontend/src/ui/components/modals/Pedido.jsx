@@ -23,7 +23,6 @@ function Pedido() {
          height: "100%",
          backgroundColor: "rgba(0, 0, 0, 0.7)",
          zIndex: 9999,
-         display: "flex",
          justifyContent: "center",
          alignItems: "center",
       }}>

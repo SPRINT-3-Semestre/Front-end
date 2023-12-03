@@ -9,17 +9,27 @@ import style from '../../ui/styles/FormRegister.module.css';
 import imageRegister from '../../ui/images/register.svg';
 
 function Register() {
+
+
     const [email, setEmail] = useState('');
-    const [nome, setNome] = useState('');
+
+    const [name, setName] = useState('');
+
+    const [lastName, setLastName] = useState('');
+
     const [password, setPassword] = useState('');
+
     const [confirmPassword, setConfirmPassword] = useState('');
+
+    const [hourValue, setHourValue] = useState('n/a');
+
+    const [pixKey, setPixKey] = useState('11961667767');
+
     const { rota } = useLocation().state;
 
     const navigate = useNavigate();
 
     const endpoint = rota;
-    console.log(endpoint)
-
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -32,9 +42,12 @@ function Register() {
 
         try {
             const response = await axios.post(endpoint, {
-                nome: nome,
+                name: name,
+                last_name: lastName,
                 email: email,
                 password: password,
+                chavePix: pixKey,
+                valorHora: hourValue,
                 isEditor: endpoint === 'http://localhost:8080/editores' ? true : false
             });
 
@@ -60,7 +73,7 @@ function Register() {
                 <img src={imageRegister} className={style.login_image} alt="Imagem de arvore roxa " />
                 <div className="row mr-5">
                     <div className="col-12 col-md-12">
-                        <form onSubmit={handleSubmit} className={style.form_login}>
+                        <form onSubmit={handleSubmit} className={style.form_register}>
                             <h1 className={style.title}>Cadastro</h1>
                             <div className="form-group">
                                 <label htmlFor="inputName">Nome</label>
@@ -70,8 +83,20 @@ function Register() {
                                     id="inputName"
                                     aria-describedby="nameHelp"
                                     placeholder="Digite seu nome"
-                                    value={nome}
-                                    onChange={(event) => setNome(event.target.value)}
+                                    value={name}
+                                    onChange={(event) => setName(event.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="inputLastName">Sobrenome</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="inputLastName"
+                                    placeholder="Digite seu sobrenome"
+                                    value={lastName}
+                                    onChange={(event) => setLastName(event.target.value)}
                                     required
                                 />
                             </div>
@@ -112,6 +137,34 @@ function Register() {
                                     required
                                 />
                             </div>
+                            {rota === 'http://localhost:8080/editores' && (
+                                <>
+                                    <div className="form-group">
+                                        <label htmlFor="inputHourValue">Valor do seu serviço (Valor hora)</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            id="inputHourValue"
+                                            placeholder="Digite o valor do seu serviço"
+                                            value={hourValue}
+                                            onChange={(event) => setHourValue(event.target.value)}
+                                            required
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="inputHourValue">Chave pix</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            id="inputPixKey"
+                                            placeholder="Digite sua chave pix"
+                                            value={pixKey}
+                                            onChange={(event) => setPixKey(event.target.value)}
+                                            required
+                                        />
+                                    </div>
+                                </>
+                            )}
                             <div className="row d-flex">
                                 <div className="col-md-6 mr-2">
                                     <Link to="/login" className={style.link_right}>Já tem cadastro?</Link>
