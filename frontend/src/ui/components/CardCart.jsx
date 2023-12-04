@@ -3,7 +3,7 @@ function CardCart( props ) {
         <table className="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Produto</th>
+                            <th>Editor</th>
                             <th>Habilidades</th>
                             <th>Preço</th>
                             <th>Ações</th>
@@ -11,8 +11,8 @@ function CardCart( props ) {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{props.editorname}</td>
-                            <td>{props.hability}</td>
+                            <td>{props.name}</td>
+                            <td>{props.skills}</td>
                             <td>R$: {props.price}</td>
                             <td>
                                 <button className="btn btn-danger btn-sm">Remover</button>
