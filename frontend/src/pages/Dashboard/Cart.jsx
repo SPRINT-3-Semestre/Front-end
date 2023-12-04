@@ -2,12 +2,29 @@ import React, { useEffect, useState } from 'react';
 import Helmet from 'react-helmet';
 import Sidebar from '../../ui/components/surfaces/SideBar';
 import CardCart from '../../ui/components/CardCart';
+import style from '../../ui/styles/Cart.module.css';
+
 import axios from 'axios';
 
 function Cart() {
 
     const [totalValue, setTotalValue] = useState(0);
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState([
+        {
+            editorname: "Editor A",
+            hability: "Design Gráfico",
+            price: 29.99
+        },
+        {
+            editorname: "Editor B",
+            hability: "Edição de Vídeo",
+            price: 39.99
+        },
+        {
+            editorname: "Editor C",
+            hability: "Programação",
+            price: 49.99
+        }]);
 
     /* function list() {
          axios.get().then((res) => {
@@ -32,10 +49,11 @@ function Cart() {
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">
-                        <div className="card mt-4">
-                            <div className="card-header">
+                        <div className={style.card_cart}>
+                            <div className={style.cart_header}>
                                 <div className="row">
-                                    <h4 className="card-title text-center">Carrinho</h4>
+                                    <img src="" alt="" />
+                                    <h4 className="card-title text-center">Carrinho de compras</h4>
                                 </div>
                             </div>
                             <div className="card-body">
@@ -53,9 +71,11 @@ function Cart() {
                                         ))
                                     )}
                                 </div>
+                                <hr />
+
                                 <div className="row">
                                     <div className="col-md-12">
-                                        <div className="float-right">
+                                        <div className={style.cart_footer}>
                                             <h3>Total: R$ {totalValue}</h3>
                                             <button className="btn btn-success">Finalizar Compra</button>
                                         </div>

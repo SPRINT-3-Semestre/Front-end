@@ -9,7 +9,7 @@ import Pedido from "../../ui/components/modals/Pedido";
 
 function Exhibition() {
   const [customers, setCustomers] = useState([]);
-  const [showModal, setShowModal] = useState(false); // Modal state
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     list();
@@ -17,11 +17,17 @@ function Exhibition() {
 
   const toggleModal = () => setShowModal(!showModal);
 
+
   function list() {
     axios
-      .get(
-        "https://6531c22a4d4c2e3f333d44b4.mockapi.io/Editores/Editores"
-      )
+      .get("http://localhost:8080/usuarios/listar-editor",
+      {
+        headers: {
+            'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'), 
+            'Content-Type': 'application/json',
+        }
+    })
+      
       .then((res) => {
         console.log(res.data);
         setCustomers(res.data);
@@ -30,6 +36,8 @@ function Exhibition() {
         console.log(err);
       });
   }
+
+  
 
   return (
     <>
@@ -44,11 +52,10 @@ function Exhibition() {
           </div>
 
           <div className="col-6 col-md-6">
-            <button className={`btn btn-primary ${style.order}`} onClick={toggleModal}>
-              Fazer Pedido
-            </button>
-
-            {showModal && <Pedido />}
+          <button className={`btn btn-primary ${style.order}`} onClick={toggleModal}>
+        Fazer Pedido
+      </button>
+      {showModal && <Pedido onClose={toggleModal} />} {/* Passe a função onClose */}
           </div>
 
         </div>

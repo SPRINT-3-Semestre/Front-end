@@ -31,7 +31,9 @@ function Login() {
                 sessionStorage.setItem('usuario', response.data.nome);
                 sessionStorage.setItem('userId', response.data.userId);
                 sessionStorage.setItem('userEmail', response.data.email);
-                sessionStorage.setItem('userType', response.data.tipo); 
+                if(response.data.editor === true) {
+                sessionStorage.setItem('editor', true);
+                }
       
                 toast.success('Login realizado com sucesso!');
                 navigate('/exposicao-editor');
@@ -43,6 +45,7 @@ function Login() {
               toast.error(error.message);
             });
         };
+
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

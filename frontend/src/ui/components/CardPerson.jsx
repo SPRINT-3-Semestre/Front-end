@@ -1,5 +1,17 @@
 import style from '../styles/CardPerson.module.css'
 import defaultImage from '../images/personicon.png'
+import axios from 'axios';
+
+const sendToCart = (customer) => {
+  // axios.post("http://localhost:8080/pedidos/adicionar", customer, {
+  //   headers: {
+  //     'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'), 
+  //     'Content-Type': 'application/json',
+  // }
+  // })
+
+  alert('Pedido enviado com sucesso!')
+};
 
 function CardPerson(props) {
   return (
@@ -13,7 +25,7 @@ function CardPerson(props) {
           props.skills ? props.skills.map((skill) => <li>{skill}</li>) : <li>Nenhuma</li>  
         }
       </ul>
-      <button className={style.bttn}>Contratar</button>
+      <button className={style.bttn} onClick={sendToCart}>Contratar</button>
     </div>
   )
 }
