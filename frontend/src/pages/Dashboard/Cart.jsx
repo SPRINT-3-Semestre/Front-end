@@ -7,7 +7,6 @@ import style from '../../ui/styles/Cart.module.css';
 import axios from 'axios';
 
 function Cart() {
-
     const [totalValue, setTotalValue] = useState(0);
     const [cart, setCart] = useState([
         {
@@ -26,21 +25,37 @@ function Cart() {
             price: 49.99
         }]);
 
-    /* function list() {
-         axios.get().then((res) => {
-             console.log(res.data)
-             setCart(res.data);
-             forEach.res.data((item) => {
-                 setTotalValue += item.price;
-                 setQtdItens(index++)
-             })
-             setQtdItens(count);
-         }).catch((err) => {
-             console.log(err);
-         })
-     }
- */
+        function list() {
+            let userId = sessionStorage.getItem('userId');
+            axios.get(`http://localhost:8080/carts?id=${userId}`,
+                {
+                    headers: {
+                        'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'), 
+                        'Content-Type': 'application/json',
+                      }
+                })
+                .then((res) => {
+                    console.log(res.data);
+                    setCart(res.data);
+        
+                    let total = 0;
+                    let quantity = 0;
+        
+                    res.data.forEach((item) => {
+                        total += item.price;
+                        quantity += 1;
+                    });
+        
+                    setTotalValue(total);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
 
+        useEffect(() => {
+            list();
+        }, []);
 
     return (
         <>
@@ -66,7 +81,7 @@ function Cart() {
                                     ) : (
                                         cart.map((editor) => (
                                             <div className="col-md-12" key={editor.id}>
-                                                <CardCart editorname={editor.editorname} hability={editor.hability} price={editor.price} />
+                                                <CardCart editorname={editor.name} hability={editor.skills} price={editor.price} />
                                             </div>
                                         ))
                                     )}
