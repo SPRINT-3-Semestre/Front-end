@@ -38,20 +38,28 @@ function PaymentConnection(props) {
   };
 
   useEffect(() => {
-    if (responsePayment) {
-      getStatusPayment();
-    }
+    const checkPaymentStatus = async () => {
+      if (responsePayment) {
+        try {
+          const response = await api.get(`v1/payments/${responsePayment.data.id}`);
+          if (response.data.status === 'approved') {
+            setStatusPayment(true);
+            setPurchaseApproved(true);
+            console.log('Compra aprovada');
+          }
+        } catch (error) {
+          console.error('Erro ao verificar o status do pagamento:', error);
+        }
+      }
+    };
+
+    const statusCheckInterval = setInterval(() => {
+      checkPaymentStatus();
+    }, 5000); // Verifica o status a cada 5 segundos (ajuste conforme necessário)
+
+    return () => clearInterval(statusCheckInterval); // Limpa o intervalo quando o componente é desmontado
   }, [responsePayment]);
 
-  const getStatusPayment = () => {
-    api.get(`v1/payments/${responsePayment.data.id}`).then((response) => {
-      if (response.data.status === 'approved') {
-        setStatusPayment(true);
-        setPurchaseApproved(true);
-        console.log('Compra aprovada');
-      }
-    });
-  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
