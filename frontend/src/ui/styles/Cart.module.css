@@ -24,3 +24,12 @@
     text-align: end;
 }
 
+
+.payment_modal{
+    color: black;
+    font-weight: bold;
+    padding: 1em;
+    border-radius: 8px;
+    justify-content: center;
+    text-align: center;
+}

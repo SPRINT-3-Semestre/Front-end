@@ -6,6 +6,7 @@ scripts/flow/*/.flowconfig
 *.pyc
 .grunt
 _SpecRunner.html
+.env
 __benchmarks__
 build/
 remote-repo/
