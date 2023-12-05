@@ -3,106 +3,124 @@ import Helmet from 'react-helmet';
 import Sidebar from '../../ui/components/surfaces/SideBar';
 import CardCart from '../../ui/components/CardCart';
 import style from '../../ui/styles/Cart.module.css';
-
 import axios from 'axios';
 
 function Cart() {
     const [totalValue, setTotalValue] = useState(0);
     const [cart, setCart] = useState([
-        {
-            editorname: "Editor A",
-            hability: "Design Gráfico",
-            price: 29.99
-        },
-        {
-            editorname: "Editor B",
-            hability: "Edição de Vídeo",
-            price: 39.99
-        },
-        {
-            editorname: "Editor C",
-            hability: "Programação",
-            price: 49.99
-        }]);
+        
+    ]);
+    const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
-        function list() {
-            let userId = sessionStorage.getItem('userId');
-            axios.get(`http://localhost:8080/carts?id=${userId}`,
-                {
-                    headers: {
-                        'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'), 
-                        'Content-Type': 'application/json',
-                      }
-                })
-                .then((res) => {
-                    console.log(res.data);
-                    setCart(res.data);
-        
-                    let total = 0;
-                    let quantity = 0;
-        
-                    res.data.forEach((item) => {
-                        total += item.price;
-                        quantity += 1;
-                    });
-        
-                    setTotalValue(total);
-                })
-                .catch((err) => {
-                    console.log(err);
+    function list() {
+        let userId = sessionStorage.getItem('userId');
+        console.log("userId= ", userId);
+        axios.get(`http://localhost:8080/carts?id=${userId}`, {
+            headers: {
+                'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+                'Content-Type': 'application/json',
+            }
+        })
+        .then((res) => {
+            console.log(res.data);
+
+            if (Array.isArray(res.data)) {
+                setCart(res.data);
+
+                let total = 0;
+
+                res.data.forEach((item) => {
+                    total += item.price;
                 });
-        }
 
-        useEffect(() => {
-            list();
-        }, []);
+                setTotalValue(total);
+            } else {
+                console.error("Response data is not an array:", res.data);
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    }
 
+    const handlePurchase = () => {
+
+        setCart([]);
+        setTotalValue(0);
+        setShowConfirmationModal(true);
+    };
+
+    const closeModal = () => {
+        setShowConfirmationModal(false);
+    };
+
+    useEffect(() => {
+        list();
+    }, []);
+    
     return (
         <>
             <Helmet title={`Carrinho  (itens) `} />
             <Sidebar />
             <div className="container">
                 <div className="row">
-                    <div className="col-md-12">
-                        <div className={style.card_cart}>
-                            <div className={style.cart_header}>
-                                <div className="row">
-                                    <img src="" alt="" />
-                                    <h4 className="card-title text-center">Carrinho de compras</h4>
-                                </div>
+                    <div className="col-md-8 offset-md-2 mt-5">
+                        <div className="card">
+                            <div className="card-header text-center">
+                                <h4>Carrinho de Compras</h4>
                             </div>
                             <div className="card-body">
-                                <div className="row">
-                                    {cart.length === 0 ? (
-                                        <div className="col-md-12">
-                                            <h5 className='text-center'>Vazio</h5>
-                                            <hr />
-                                        </div>
-                                    ) : (
-                                        cart.map((editor) => (
-                                            <div className="col-md-12" key={editor.id}>
-                                                <CardCart editorname={editor.name} hability={editor.skills} price={editor.price} />
-                                            </div>
-                                        ))
-                                    )}
-                                </div>
-                                <hr />
-
-                                <div className="row">
-                                    <div className="col-md-12">
-                                        <div className={style.cart_footer}>
-                                            <h3>Total: R$ {totalValue}</h3>
-                                            <button className="btn btn-success">Finalizar Compra</button>
-                                        </div>
+                                {cart.length === 0 ? (
+                                    <div className="text-center">
+                                        <h5>Carrinho vazio</h5>
                                     </div>
+                                ) : (
+                                    cart.map((editor, index) => (
+                                        <CardCart key={index} name={editor.name} skills={editor.skills} price={editor.price} />
+                                    ))
+                                )}
+                                <hr />
+                                <div className="text-center">
+                                    <h5>Total: R$ {totalValue.toFixed(2)}</h5>
+                                    <button
+                                        className="btn btn-success mt-3"
+                                        onClick={handlePurchase}
+                                        disabled={cart.length === 0}
+                                    >
+                                        Finalizar Compra
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            {/* Modal de Confirmação */}
+            {showConfirmationModal && (
+                <div className="modal" tabIndex="-1" role="dialog" style={{ display: 'block' }}>
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title">Compra Confirmada!</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={closeModal}>
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                <p>Obrigado por sua compra. Seu pedido foi confirmado.</p>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-primary" onClick={closeModal}>
+                                    Continuar Comprando
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </>
-    )
+    );
 }
 
 export default Cart;
