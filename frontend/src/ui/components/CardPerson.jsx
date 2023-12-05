@@ -8,13 +8,13 @@ const CardPerson = (props) => {
 
   const navigate = useNavigate();
   let userId = sessionStorage.getItem('userId'); 
-  let data = {
-    "valorTotal": 100,  
-    "clientFinal": 2,
-    "editor": 3 
-  };
 
   const sendToCart = () => {
+    let data = {
+      "valorTotal": props.price,  
+      "clientFinal": userId,
+      "editor": props.id
+    };
     axios.post("http://localhost:8080/carts", data, {
       headers: {
         'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'), 
@@ -42,7 +42,7 @@ const CardPerson = (props) => {
           props.skills ? props.skills.map((skill) => <li key={skill}>{skill}</li>) : <li>Nenhuma</li>  
         }
       </ul>
-      <button className={style.bttn} onClick={() => sendToCart(props)}>Contratar</button>
+      <button className={style.bttn} onClick={sendToCart}>Contratar</button>
     </div>
   );
 };

@@ -13,7 +13,10 @@ import imageLogin from '../../ui/images/login.svg'
 
 
 function Login() {
-
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+    
     const url = "http://localhost:8080/usuarios/login";
     const logar = (email, password) => {
 
@@ -35,6 +38,8 @@ function Login() {
                 sessionStorage.setItem('editor', true);
                 }
       
+alert("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+
                 toast.success('Login realizado com sucesso!');
                 navigate('/exposicao-editor');
               } else {
@@ -47,9 +52,6 @@ function Login() {
         };
 
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();

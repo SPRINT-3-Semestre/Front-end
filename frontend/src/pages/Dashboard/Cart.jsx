@@ -9,21 +9,7 @@ import axios from 'axios';
 function Cart() {
     const [totalValue, setTotalValue] = useState(0);
     const [cart, setCart] = useState([
-        {
-            editorname: "Editor A",
-            hability: "Design Gráfico",
-            price: 29.99
-        },
-        {
-            editorname: "Editor B",
-            hability: "Edição de Vídeo",
-            price: 39.99
-        },
-        {
-            editorname: "Editor C",
-            hability: "Programação",
-            price: 49.99
-        }]);
+    ])
 
         function list() {
             let userId = sessionStorage.getItem('userId');
@@ -81,7 +67,7 @@ function Cart() {
                                     ) : (
                                         cart.map((editor) => (
                                             <div className="col-md-12" key={editor.id}>
-                                                <CardCart editorname={editor.name} hability={editor.skills} price={editor.price} />
+                                                <CardCart name={editor.name} {...editor} skills={editor.skills} price={editor.price} />
                                             </div>
                                         ))
                                     )}

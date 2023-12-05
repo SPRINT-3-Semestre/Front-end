@@ -8,32 +8,33 @@ import EditInfo from './pages/Dashboard/User/EditInfo';
 import Cart from './pages/Dashboard/Cart';
 import Chat from './pages/Dashboard/User/Chat';
 
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import RegisterSelection from './pages/Auth/RegisterSelection';
+
+const PrivateRoute = ({ element }) => {
+  // Verificar se o usuário está autenticado
+  const isAuthenticated = sessionStorage.getItem('authToken') !== null;
+
+  // Se o usuário estiver autenticado, renderize o componente, caso contrário, redirecione para a página de login
+  return isAuthenticated ? element : <Navigate to="/login" />;
+};
 
 function Rotas() {
   return (
     <>
       <Router>
         <Routes>
-          {sessionStorage.getItem('authToken') != null ? (
-            <>
-              <Route path="*" element={<Exhibition />} />
-              <Route path="/exposicao-editor" element={<Exhibition />} />
-              <Route path="/portfolio/editor" element={<Portfolio />} />{/*Precisa colocar um id*/}
-              <Route path="/editar-informacoes" element={<EditInfo />} />
-              <Route path="/ganhos-mensais" element={<MonthlyGains />} />
-              <Route path="/carrinho" element={<Cart />} />
-              <Route path="/chat" element={<Chat />} />
-            </>
-          ) : (
-            <>
-              <Route path="*" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/register-seletor" element={<RegisterSelection />} />
-            </>
-          )}
+          <Route path="/exposicao-editor" element={<PrivateRoute element={<Exhibition />}/>} />
+          <Route path="/portfolio/editor" element={<PrivateRoute element={<Portfolio />}/>} />{/*Precisa colocar um id*/}
+          <Route path="/editar-informacoes" element={<PrivateRoute element={<EditInfo />}/>} />
+          <Route path="/ganhos-mensais" element={<PrivateRoute element={<MonthlyGains />}/>} />
+          <Route path="/carrinho" element={<PrivateRoute element={<Cart />}/>} />
+          <Route path="/chat" element={<PrivateRoute element={<Chat />}/>} />
+
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/register-seletor" element={<RegisterSelection />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </Router>
     </>

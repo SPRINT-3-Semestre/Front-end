@@ -12,31 +12,25 @@ function Exhibition() {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    list();
+    axios
+    .get("http://localhost:8080/usuarios/listar-editor",
+    {
+      headers: {
+          'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'), 
+          'Content-Type': 'application/json',
+      }
+  })
+    
+    .then((res) => {
+      console.log(res.data);
+      setCustomers(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }, []);
 
   const toggleModal = () => setShowModal(!showModal);
-
-
-  function list() {
-    axios
-      .get("http://localhost:8080/usuarios/listar-editor",
-      {
-        headers: {
-            'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'), 
-            'Content-Type': 'application/json',
-        }
-    })
-      
-      .then((res) => {
-        console.log(res.data);
-        setCustomers(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
   
 
   return (
@@ -66,6 +60,7 @@ function Exhibition() {
               {customers?.map((customer, index) => (
                 <CardPerson
                   key={index}
+                  id={customer.id}
                   name={customer.nome}
                   price={customer.valorHora}
                   personImage={customer.photo_profile}
