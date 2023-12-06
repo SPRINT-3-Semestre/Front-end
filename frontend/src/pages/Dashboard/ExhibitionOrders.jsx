@@ -11,8 +11,8 @@ function ExhibitionOrders() {
     const [showModal, setShowModal] = useState(false);
     const [orders, setOrders] = useState([]);
 
-    
-    const list = () =>{
+
+    const list = () => {
         axios.get('http://localhost:8080/orders', {
             headers: {
                 Authorization: `Bearer ${sessionStorage.getItem('authToken')}`
@@ -23,8 +23,8 @@ function ExhibitionOrders() {
         }).catch((error) => {
             console.log(error)
         })
-    } 
-    
+    }
+
     useEffect(() => {
         list()
     }, [])
@@ -49,14 +49,19 @@ function ExhibitionOrders() {
                     </div>
                 </div>
                 <hr />
+
                 <div className="row">
-                    {orders.map((order) => {
-                        return (
-                            <div className="col-md-4 mt-5">
+                    {orders.length > 0 ? (
+                        orders.map((order) => (
+                            <div className="col-md-4 mt-5" key={order.id}>
                                 <OrderCard title={order.title} description={order.description} skills={order.skills} />
                             </div>
-                        )
-                    })}
+                        ))
+                    ) : (
+                        <div className="col-md-12 text-center mt-3">
+                            <p>Nenhum pedido disponível no momento.</p>
+                        </div>
+                    )}
                 </div>
             </div >
         </>
