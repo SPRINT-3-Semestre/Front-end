@@ -1,7 +1,8 @@
 import Home from './pages/Home/Home';
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
-import Exhibition from './pages/Dashboard/ExhibitionEditor'
+import ExhibitionEditor from './pages/Dashboard/ExhibitionEditor'
+import ExhibitionOrders from './pages/Dashboard/ExhibitionOrders'
 import Portfolio from './pages/Dashboard/Portfolio';
 import MonthlyGains from './pages/Dashboard/MonthlyGains';
 import EditInfo from './pages/Dashboard/User/EditInfo';
@@ -24,7 +25,8 @@ function Rotas() {
     <>
       <Router>
         <Routes>
-          <Route path="/exposicao-editor" element={<PrivateRoute element={<Exhibition />}/>} />
+          <Route path="/exposicao-editor" element={<PrivateRoute element={<ExhibitionEditor />}/>} />
+          <Route path="/exposicao-pedidos" element={<PrivateRoute element={<ExhibitionOrders />}/>} />
           <Route path="/portfolio/editor" element={<PrivateRoute element={<Portfolio />}/>} />{/*Precisa colocar um id*/}
           <Route path="/editar-informacoes" element={<PrivateRoute element={<EditInfo />}/>} />
           <Route path="/ganhos-mensais" element={<PrivateRoute element={<MonthlyGains />}/>} />

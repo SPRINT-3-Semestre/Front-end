@@ -9,6 +9,7 @@ import grafico from '../../images/Grafico.svg'
 import chat from '../../images/Vector-1.svg'
 import logo from '../../images/logoAtt.png'
 import SidebarIcon from "../SideBarIcon";
+import services from '../../images/person-workspace.svg'
 
 const Sidebar = () => {
 
@@ -34,7 +35,8 @@ const Sidebar = () => {
         <div className={style.icons}>
           <img src={logo} alt="Logo da editmatch" width={40} height={50} onClick={handleClick} />
           <SidebarIcon image={personPhoto} firstoption="Perfil" ref1="/editar-informacoes" secondoption="Portfolio" ref2="/portfolio/editor" thirdoptiion="Sair" ref3="/" />
-          <SidebarIcon image={chat} firstoption="Conversas" ref1="/chat" />
+          <SidebarIcon image={services} firstoption="Pedidos" ref1="/exposicao-pedidos" secondoption="Contratar editores" ref2="/exposicao-editor" />
+          <SidebarIcon image={chat} firstoption="Conversas ativas" ref1={`/conversas-ativas/${sessionStorage.getItem('userId')}`} />
           <SidebarIcon image={cart} firstoption="Meus Pedidos" ref1="/carrinho" />
           {sessionStorage.getItem('editor') === 'true' && (
             <SidebarIcon image={grafico} firstoption="Ganhos mensais" ref1="/ganhos-mensais" />

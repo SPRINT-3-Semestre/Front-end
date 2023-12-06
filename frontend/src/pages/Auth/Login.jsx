@@ -37,9 +37,6 @@ function Login() {
                 if(response.data.editor === true) {
                 sessionStorage.setItem('editor', true);
                 }
-      
-alert("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-
                 toast.success('Login realizado com sucesso!');
                 navigate('/exposicao-editor');
               } else {

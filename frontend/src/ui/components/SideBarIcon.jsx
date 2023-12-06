@@ -8,7 +8,7 @@ const SidebarIcon = (props) => {
   
   return (
     <span className={style.sidebarIcon}>
-      <img src={props.image} alt="Icon" className={style.iconImage} />
+      <img src={props.image} alt="Icon" className={style.iconImage} width={40}/>
       <div className={style.sidebarContent}>
         <ul>
           <li><a href={props.ref1}>{props.firstoption}</a></li>

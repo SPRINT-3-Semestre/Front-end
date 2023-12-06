@@ -1,6 +1,6 @@
 import React, { useReducer, useState, useEffect } from 'react';
 import axios from 'axios';
-import './ui/styles/Payment.css';
+import style from './ui/styles/Payment.module.css';
 
 const api = axios.create({
   baseURL: 'https://api.mercadopago.com',
@@ -45,7 +45,13 @@ function PaymentConnection(props) {
           if (response.data.status === 'approved') {
             setStatusPayment(true);
             setPurchaseApproved(true);
-            console.log('Compra aprovada');
+            axios.delete(`http://localhost:8080/carts/empty-cart/${sessionStorage.getItem('userId')}`,
+              {
+                headers: {
+                  Authorization: `Bearer ${sessionStorage.getItem('authToken')}`
+                }
+              }
+            )
           }
         } catch (error) {
           console.error('Erro ao verificar o status do pagamento:', error);
@@ -55,9 +61,9 @@ function PaymentConnection(props) {
 
     const statusCheckInterval = setInterval(() => {
       checkPaymentStatus();
-    }, 5000); // Verifica o status a cada 5 segundos (ajuste conforme necessário)
+    }, 5000); 
 
-    return () => clearInterval(statusCheckInterval); // Limpa o intervalo quando o componente é desmontado
+    return () => clearInterval(statusCheckInterval); 
   }, [responsePayment]);
 
 
@@ -97,7 +103,7 @@ function PaymentConnection(props) {
   return (
     <>
       {!responsePayment && (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={style.payment}>
           <div>
             <label className="form-label">E-mail</label>
             <input
