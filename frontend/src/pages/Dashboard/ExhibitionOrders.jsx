@@ -1,44 +1,33 @@
 import { Helmet } from "react-helmet";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from '../../ui/styles/ExhibitionOrders.module.css';
 
 import OrderCard from "../../ui/components/OrderCard";
 import Sidebar from "../../ui/components/surfaces/SideBar";
 import Pedido from "../../ui/components/modals/Pedido";
+import axios from "axios"
 
 function ExhibitionOrders() {
     const [showModal, setShowModal] = useState(false);
-    const [orders, setOrders] = useState([
+    const [orders, setOrders] = useState([]);
 
-        {
-            id: 1,
-            userId: 1,
-            title: "Video de dança",
-            description: "Preciso de um video de dança simples",
-            skills: "Edição profissional, videos de dança"
-        }, {
-            id: 2,
-            userId: 3,
-            title: "Video de dança",
-            description: "Preciso de um video de dança simples",
-            skills: "Edição profissional, videos de dança"
-        }, {
-            id: 3,
-            userId: 5,
-            title: "Video de dança",
-            description: "Preciso de um video de dança simples",
-            skills: "Edição profissional, videos de dança"
-        },
-        {
-            id: 4,
-            userId: 10,
-            title: "Video de dança",
-            description: "Preciso de um video de dança simples",
-            skills: "Edição profissional, videos de dança"
-        }
-
-    ]);
-
+    
+    const list = () =>{
+        axios.get('http://localhost:8080/orders', {
+            headers: {
+                Authorization: `Bearer ${sessionStorage.getItem('authToken')}`
+            }
+        }).then((response) => {
+            setOrders(response.data)
+            console.log(response)
+        }).catch((error) => {
+            console.log(error)
+        })
+    } 
+    
+    useEffect(() => {
+        list()
+    }, [])
 
     const toggleModal = () => setShowModal(!showModal);
 
@@ -56,7 +45,7 @@ function ExhibitionOrders() {
                         <button className={style.button} onClick={toggleModal}>
                             Fazer Pedido
                         </button>
-                        {showModal && <Pedido onClose={toggleModal} />} {/* Passe a função onClose */}
+                        {showModal && <Pedido onClose={toggleModal} />}
                     </div>
                 </div>
                 <hr />

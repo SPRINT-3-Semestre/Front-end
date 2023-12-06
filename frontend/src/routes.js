@@ -8,6 +8,7 @@ import MonthlyGains from './pages/Dashboard/MonthlyGains';
 import EditInfo from './pages/Dashboard/User/EditInfo';
 import Cart from './pages/Dashboard/Cart';
 import Chat from './pages/Dashboard/User/Chat';
+import ActiveConversations from './pages/Dashboard/ActiveConversations';
 
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import RegisterSelection from './pages/Auth/RegisterSelection';
@@ -32,6 +33,7 @@ function Rotas() {
           <Route path="/ganhos-mensais" element={<PrivateRoute element={<MonthlyGains />}/>} />
           <Route path="/carrinho" element={<PrivateRoute element={<Cart />}/>} />
           <Route path="/chat" element={<PrivateRoute element={<Chat />}/>} />
+          <Route path="/conversas-ativas" element={<PrivateRoute element={<ActiveConversations />}/>} />
 
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

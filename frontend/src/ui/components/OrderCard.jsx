@@ -1,7 +1,8 @@
 import React from 'react';
 import personIcon from '../../ui/images/personicon.png';
+import axios from 'axios';
 
-import style from '../../ui/styles/OrderCard.module.css'
+import style from '../../ui/styles/OrderCard.module.css';
 
 function OrderCard(props) {
     return (
@@ -26,7 +27,9 @@ function OrderCard(props) {
                 <p className="card-text"><b>Descrição: </b><br /> {props.description}</p>
                 <p className="card-text"><b>Habilidades:</b> <br />{props.skills}</p>
                 <div className="text-center">
-                    <button className="btn btn-primary">Negociar</button>
+                    <button className="btn btn-primary">
+                        Negociar
+                    </button>
                 </div>
             </div>
         </div>

@@ -22,19 +22,18 @@ function Chat() {
 
     const sendMessage = () => {
         let messageText = document.getElementById('message').value;
-        let messageHora = new Date().toLocaleTimeString(); // Adiciona a hora atual
+        let messageHora = new Date().toLocaleTimeString();
         setUserDireita(prevUserDireita => ({
             ...prevUserDireita,
             message: [...prevUserDireita.message, { texto: messageText, hora: messageHora }]
         }));
 
-        // Clear input
         document.getElementById('message').value = "";
     }
 
     const handleKeyPress = (event) => {
         if (event.key === "Enter" && !event.shiftKey) {
-            event.preventDefault(); // Evita a quebra de linha ao pressionar Enter
+            event.preventDefault();
             sendMessage();
         }
     };
@@ -62,7 +61,6 @@ function Chat() {
                         </header>
 
                         <div className={`${style.chat_background}`}>
-                            {/* Mensagens de quem está do lado esquerdo */}
                             {userEsquerda.message.map((msg, index) => (
                                 <div className={`col-md-6 ${style.message_box}`} key={index}>
                                     <div className={`${style.message_left}`}>
@@ -72,7 +70,6 @@ function Chat() {
                                 </div>
                             ))}
 
-                            {/* Mensagens de quem está do lado direito */}
                             {userDireita.message.map((msg, index) => (
                                 <div className={`col-md-6 ${style.message_box_right}`} key={index}>
                                     <div className={`${style.message_right}`}>
