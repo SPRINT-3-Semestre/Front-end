@@ -12,6 +12,7 @@ import ActiveConversations from './pages/Dashboard/ActiveConversations';
 
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import RegisterSelection from './pages/Auth/RegisterSelection';
+import MyOrders from './pages/Dashboard/MyOrders';
 
 const PrivateRoute = ({ element }) => {
   // Verificar se o usuário está autenticado
@@ -26,14 +27,15 @@ function Rotas() {
     <>
       <Router>
         <Routes>
-          <Route path="/exposicao-editor" element={<PrivateRoute element={<ExhibitionEditor />}/>} />
-          <Route path="/exposicao-pedidos" element={<PrivateRoute element={<ExhibitionOrders />}/>} />
-          <Route path="/portfolio/editor" element={<PrivateRoute element={<Portfolio />}/>} />{/*Precisa colocar um id*/}
-          <Route path="/editar-informacoes" element={<PrivateRoute element={<EditInfo />}/>} />
+          <Route path="/exposicao-editor" element={<PrivateRoute element={<ExhibitionEditor />} />} />
+          <Route path="/exposicao-pedidos" element={<PrivateRoute element={<ExhibitionOrders />} />} />
+          <Route path="/meus-pedidos" element={<PrivateRoute element={<MyOrders />} />} />
+          <Route path="/portfolio/:id" element={<PrivateRoute element = { <Portfolio />} />} />
+          <Route path="/editar-informacoes" element={<PrivateRoute element={<EditInfo />} />} />
           {/* <Route path="/ganhos-mensais" element={<PrivateRoute element={<MonthlyGains />}/>} /> */}
-          <Route path="/carrinho" element={<PrivateRoute element={<Cart />}/>} />
-          <Route path="/chat" element={<PrivateRoute element={<Chat />}/>} />
-          <Route path="/conversas-ativas" element={<PrivateRoute element={<ActiveConversations />}/>} />
+          <Route path="/carrinho" element={<PrivateRoute element={<Cart />} />} />
+          <Route path="/chat" element={<PrivateRoute element={<Chat />} />} />
+          <Route path="/conversas-ativas" element={<PrivateRoute element={<ActiveConversations />} />} />
 
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

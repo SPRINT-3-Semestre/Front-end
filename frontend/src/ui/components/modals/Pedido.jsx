@@ -39,6 +39,7 @@ function Pedido({ onClose }) {
       })
         .then((response) => {
           console.log(response.data);
+          alert('Pedido criado com sucesso!');
           onClose();
         })
         .catch((error) => {

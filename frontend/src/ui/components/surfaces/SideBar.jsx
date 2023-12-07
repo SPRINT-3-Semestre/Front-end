@@ -43,9 +43,9 @@ const Sidebar = () => {
             ref3={sessionStorage.getItem("editor") ? "/portfolio/editor" : undefined}
             />
 
-          <SidebarIcon image={services} firstoption="Pedidos" ref1="/exposicao-pedidos" secondoption="Contratar editores" ref2="/exposicao-editor" />
+          <SidebarIcon image={services} firstoption="Pedidos" ref1="/exposicao-pedidos" secondoption="Meus pedidos" ref2="/meus-pedidos" thirdoptiion="Contratar editores" ref3="/exposicao-editor" />
           <SidebarIcon image={chat} firstoption="Conversas ativas" ref1="/conversas-ativas" />
-          <SidebarIcon image={cart} firstoption="Meus Pedidos" ref1="/carrinho" />
+          <SidebarIcon image={cart} firstoption="Meu carrinho" ref1="/carrinho" />
           {/* {sessionStorage.getItem('editor') === 'true' && (
             <SidebarIcon image={grafico} firstoption="Ganhos mensais" ref1="/ganhos-mensais" />
           )} */}

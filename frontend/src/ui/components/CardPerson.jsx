@@ -30,21 +30,7 @@ const CardPerson = (props) => {
   };
 
   const viewPortfolio = () => {
-    axios
-      .get(`http://localhost:8080/usuarios/${props.id}/portfolio`, {
-        headers: {
-          'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
-          'Content-Type': 'application/json',
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        navigate(`/portfolio/${props.id}`);  // Atualizado para incluir o ID do editor na URL
-      })
-      .catch((error) => {
-        console.error('Erro ao carregar o portfolio:', error);
-        alert('Erro ao carregar o portfolio. Por favor, tente novamente mais tarde.');
-      });
+    navigate(`/portfolio/editor?id=${props.id}`);
   };
 
   return (
@@ -94,7 +80,6 @@ const CardPerson = (props) => {
         <div className="col-md-6 mt-5">
           <button className={style.bttn2} onClick={viewPortfolio}>Portfolio</button>
         </div>
-
       </div>
     </div>
   );

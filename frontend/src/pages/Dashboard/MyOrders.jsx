@@ -2,12 +2,12 @@ import { Helmet } from "react-helmet";
 import { useEffect, useState } from "react";
 import style from '../../ui/styles/ExhibitionOrders.module.css';
 
-import OrderCard from "../../ui/components/OrderCard";
+import MyOrderCard from "../../ui/components/MyOrderCard";
 import Sidebar from "../../ui/components/surfaces/SideBar";
 import Pedido from "../../ui/components/modals/Pedido";
 import axios from "axios"
 
-function ExhibitionOrders() {
+function MyOrders() {
     const [showModal, setShowModal] = useState(false);
     const [orders, setOrders] = useState([]);
 
@@ -19,6 +19,7 @@ function ExhibitionOrders() {
             }
         }).then((response) => {
             setOrders(response.data)
+            console.log(response)
         }).catch((error) => {
             console.log(error)
         })
@@ -44,7 +45,7 @@ function ExhibitionOrders() {
             <div className="container">
                 <div className="row">
                     <div className="col-md-12 text-center mt-5">
-                        <h4>Pedidos</h4>
+                        <h4>Meus Pedidos</h4>
                     </div>
                     <div className="col-md-12">
                         <button className={style.button} onClick={toggleModal}>
@@ -59,7 +60,7 @@ function ExhibitionOrders() {
                     {orders.length > 0 ? (
                         orders.map((order) => (
                             <div className="col-md-4 mt-5" key={order.id}>
-                                <OrderCard nome={order.nome} title={order.title} description={order.desc} skills={order.skills} image={order.image} />
+                                <MyOrderCard id={order.orderId} nome={order.nome} title={order.title} description={order.desc} skills={order.skills} image={order.image} />
                             </div>
                         ))
                     ) : (
@@ -73,4 +74,4 @@ function ExhibitionOrders() {
     )
 }
 
-export default ExhibitionOrders;
+export default MyOrders;
