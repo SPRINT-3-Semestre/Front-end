@@ -67,9 +67,14 @@ function MonthlyGains() {
                                 </div>
                             </div>
                             <div className="card-body">
-                                <canvas id="myChart" width="200" height="80"></canvas>
+                                <canvas id="myChart" width="200" height="40"></canvas>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-6">
+                        <button>Exportar ganhos mensais</button>
                     </div>
                 </div>
             </div>

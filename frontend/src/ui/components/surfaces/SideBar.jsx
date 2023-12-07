@@ -33,7 +33,16 @@ const Sidebar = () => {
       <div className={style.side}>
         <div className={style.icons}>
           <img src={logo} alt="Logo da editmatch" width={40} height={50} onClick={handleClick} />
-          <SidebarIcon image={personPhoto} firstoption="Perfil" ref1="/editar-informacoes" thirdoption="Sair" ref3="/" secondoption={sessionStorage.getItem("editor") === "true" ? "portfolio" : undefined} ref2={sessionStorage.getItem("editor") === "true" ? "/portfolio/editor" : undefined}/>
+          <SidebarIcon
+            image={personPhoto}
+            firstoption="Perfil"
+            ref1="/editar-informacoes"
+            secondoption="Sair"
+            ref2="/"
+            thirdoption={sessionStorage.getItem("editor") === "true" ? "portfolio" : undefined}
+            ref3={sessionStorage.getItem("editor") === "true" ? "/portfolio/editor" : undefined}
+            />
+
           <SidebarIcon image={services} firstoption="Pedidos" ref1="/exposicao-pedidos" secondoption="Contratar editores" ref2="/exposicao-editor" />
           <SidebarIcon image={chat} firstoption="Conversas ativas" ref1="/conversas-ativas" />
           <SidebarIcon image={cart} firstoption="Meus Pedidos" ref1="/carrinho" />
@@ -46,4 +55,4 @@ const Sidebar = () => {
     </>
   )
 };
-export default Sidebar;
+export default Sidebar

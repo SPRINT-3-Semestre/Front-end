@@ -14,6 +14,8 @@ function EditInfo() {
     const [uf, setUf] = useState('');
     const [numero, setNumero] = useState('');
     const [complemento, setComplemento] = useState('');
+    const [image, setImage] = useState(null);
+    const [imagen, setImagen] = useState(personIcon);
 
     const handleCepChange = (event) => {
         setCep(event.target.value);
@@ -40,6 +42,61 @@ function EditInfo() {
         }
     };
 
+    const fetchProfileImage = async () => {
+        try {
+
+            const response = await axios.get(`http://localhost:8080/usuarios/${sessionStorage.getItem('userId')}/photo`, {
+                responseType: 'arraybuffer',
+                headers: {
+                    'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+                }
+            });
+
+            // Converte o buffer de dados da imagem para base64
+            const base64 = btoa(
+                new Uint8Array(response.data).reduce(
+                    (data, byte) => data + String.fromCharCode(byte),
+                    '',
+                ),
+            );
+
+            // Atualiza o estado com a imagem em base64
+            setImagen(`data:image/png;base64,${base64}`);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const trocarImagem = async () => {
+        try {
+            if (!image) {
+                console.error('Nenhuma imagem selecionada.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', image.files[0]);
+
+            const response = await axios.post(
+                `http://localhost:8080/usuarios/${sessionStorage.getItem('userId')}/upload-photo`,
+                formData,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${sessionStorage.getItem('authToken')}`,
+                        'Content-Type': 'multipart/form-data',
+                    },
+                }
+            );
+
+            console.log(response.data);
+        } catch (error) {
+            console.error('Erro ao enviar a imagem:', error);
+        }
+    };
+
+
+
+
     const saveInfo = async () => {
         axios.post(`http://localhost:8080/enderecos/${sessionStorage.getItem('userId')}`, {
             cidade: localidade,
@@ -61,20 +118,22 @@ function EditInfo() {
                 console.log(err);
             })
     }
-
     return (
         <>
             <Sidebar />
             <div className="container">
+                <button onClick={fetchProfileImage}>Testar</button>
                 <div className="row">
                     <div className="float-center col-12 col-md-12">
                         <div className={style.configCard}>
                             <div className="row">
                                 <div className="col-1 col-md-2 float-start">
-                                    <img src={personIcon} alt="Foto da pessoa" width={150} />
-                                    <input type="file" name="" id="" className={`form-control mt-2`} />
+                                    <img
+                                        src={imagen} alt="Foto da pessoa" width={150} />                                    <input type="file" className={`form-control mt-2`} onChange={(event) => setImage(event.currentTarget)} />
+                                    <button type="button" onClick={trocarImagem} className={`btn btn-success mt-2`}>
+                                        Enviar Imagem
+                                    </button>
                                 </div>
-
                                 <div className="col-11 col-md-10">
                                     <div className="content">
                                         <h5 className='mt-5'>Dados pessoais</h5>

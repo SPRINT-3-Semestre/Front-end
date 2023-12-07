@@ -19,7 +19,7 @@ function OrderCard(props) {
                         />
                     </div>
                     <div className="col-md-6">
-                        <h6 className="card-text mt-5">Nome do usuário</h6>
+                        <h6 className="card-text mt-5">{props.nome}</h6>
                     </div>
                 </div>
                 <hr />

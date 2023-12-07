@@ -54,7 +54,7 @@ function ExhibitionOrders() {
                     {orders.length > 0 ? (
                         orders.map((order) => (
                             <div className="col-md-4 mt-5" key={order.id}>
-                                <OrderCard title={order.title} description={order.description} skills={order.skills} />
+                                <OrderCard nome={order.nome} title={order.title} description={order.description} skills={order.skills} />
                             </div>
                         ))
                     ) : (
