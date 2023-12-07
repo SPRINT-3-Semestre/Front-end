@@ -7,10 +7,6 @@ import axios from "axios";
 
 import defaultImage from '../../ui/images/personicon.png';
 
-
-import Pedido from "../../ui/components/modals/Pedido";
-import { Link } from "react-router-dom";
-
 function Exhibition() {
   const [customers, setCustomers] = useState([]);
   const [showModal, setShowModal] = useState(false);

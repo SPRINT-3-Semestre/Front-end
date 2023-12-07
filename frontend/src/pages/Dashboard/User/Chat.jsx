@@ -1,22 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { useLocation } from "react-router-dom";
 import style from '../../../ui/styles/chat.module.css';
 import iconAviao from '../../../ui/images/send.svg'
 import iconMoney from '../../../ui/images/cash-stack.svg'
 import Sidebar from "../../../ui/components/surfaces/SideBar";
 
 function Chat() {
+    const location = useLocation();
+    const params = new URLSearchParams(location.search);
+    const nome = params.get("nome");
+    const image = params.get("image");
+
     const [userEsquerda, setUserEsquerda] = useState({
-        nome: "Abimael",
-        foto: 'https://avatars.githubusercontent.com/u/59853942?v=4',
-        message: [
-            { texto: "Olá, tudo bem? Como vai? lorem ipsum dolor sit amet, consectetur adipiscing elitLEFT3.", hora: "10:30" },
-        ]
+        nome: nome,
+        image: image ,
+        message: []
     });
+
+
+    console.log(userEsquerda.image)
 
     const [userDireita, setUserDireita] = useState({
         nome: "Wesley",
-        foto: 'https://avatars.githubusercontent.com/u/59853942?v=4',
+        image: 'https://avatars.githubusercontent.com/u/59853942?v=4',
         message: []
     });
 
@@ -45,11 +52,11 @@ function Chat() {
 
             <div className="container">
                 <div className="row">
-                    <div className="col-md-12">
+                    <div className="col-md-12 mt-4">
                         <header className={style.header_chat}>
                             <div className="row">
                                 <div className="col-md-6">
-                                    <img src={userEsquerda.foto} alt="" width={80} height={80} />
+                                    <img src={userEsquerda.image} alt="" width={80} height={80} />
                                 </div>
                                 <div className="col-md-4">
                                     <h4 className="mt-4 ml-2">{userEsquerda.nome}</h4>

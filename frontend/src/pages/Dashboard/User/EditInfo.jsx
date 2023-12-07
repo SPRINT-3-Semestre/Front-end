@@ -1,7 +1,7 @@
 import personIcon from '../../../ui/images/personicon.png'
 import Sidebar from '../../../ui/components/surfaces/SideBar';
 import style from '../../../ui/styles/EditInfo.module.css'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function EditInfo() {
@@ -67,17 +67,18 @@ function EditInfo() {
         }
     };
 
-    console.log(imagen)
 
-    const trocarImagem = async () => {
+    const trocarImagemOnChange = async (event) => {
         try {
-            if (!image) {
+            const selectedImage = event.target.files[0];
+
+            if (!selectedImage) {
                 console.error('Nenhuma imagem selecionada.');
                 return;
             }
 
             const formData = new FormData();
-            formData.append('file', image.files[0]);
+            formData.append('file', selectedImage);
 
             const response = await axios.post(
                 `http://localhost:8080/usuarios/${sessionStorage.getItem('userId')}/upload-photo`,
@@ -91,13 +92,13 @@ function EditInfo() {
             );
 
             console.log(response.data);
+
+            // Após o envio bem-sucedido, busca a nova imagem
+            await fetchProfileImage();
         } catch (error) {
             console.error('Erro ao enviar a imagem:', error);
         }
     };
-
-
-
 
     const saveInfo = async () => {
         axios.post(`http://localhost:8080/enderecos/${sessionStorage.getItem('userId')}`, {
@@ -121,21 +122,30 @@ function EditInfo() {
                 console.log(err);
             })
     }
+
+    useEffect(() => {
+        fetchProfileImage();
+    }, []);
+
+
     return (
         <>
             <Sidebar />
             <div className="container">
-                <button onClick={fetchProfileImage}>Testar</button>
                 <div className="row">
                     <div className="float-center col-12 col-md-12">
                         <div className={style.configCard}>
                             <div className="row">
-                                <div className="col-1 col-md-2 float-start">
-                                    <img
-                                        src={imagen} alt="Foto da pessoa" width={150} />                                    <input type="file" className={`form-control mt-2`} onChange={(event) => setImage(event.currentTarget)} />
-                                    <button type="button" onClick={trocarImagem} className={`btn btn-success mt-2`}>
-                                        Enviar Imagem
-                                    </button>
+                                <div className="col-1 col-md-2">
+                                    <img src={imagen}
+                                        style={{
+                                            width: '100px',
+                                            height: '100px',
+                                            borderRadius: '50%',
+                                            objectFit: 'cover',
+                                        }}
+                                        alt="Foto da pessoa"/>
+                                    <input type="file" className={`form-control`} onChange={trocarImagemOnChange} />
                                 </div>
                                 <div className="col-11 col-md-10">
                                     <div className="content">

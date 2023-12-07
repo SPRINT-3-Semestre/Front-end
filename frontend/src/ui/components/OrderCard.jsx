@@ -1,8 +1,11 @@
 import React from 'react';
 import personIcon from '../../ui/images/personicon.png';
-import axios from 'axios';
+import { Link } from "react-router-dom";  // Importe o componente Link
+
 
 import style from '../../ui/styles/OrderCard.module.css';
+import defaultImage from '../../ui/images/personicon.png';
+
 
 function OrderCard(props) {
     return (
@@ -27,9 +30,11 @@ function OrderCard(props) {
                 <p className="card-text"><b>Descrição: </b><br /> {props.description}</p>
                 <p className="card-text"><b>Habilidades:</b> <br />{props.skills}</p>
                 <div className="text-center">
-                    <button className="btn btn-primary">
-                        Negociar
-                    </button>
+                    <Link to={`/chat?nome=${props.nome}&image=${props.image ? props.image : defaultImage}`}>
+                        <button className="btn btn-primary">
+                            Negociar
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>

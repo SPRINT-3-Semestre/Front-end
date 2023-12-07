@@ -8,11 +8,7 @@ import NovoVideo from "../../ui/components/modals/NovoVideo";
 
 function Portfolio() {
 
-    const [videos, setVideos] = useState([
-        {
-        title: "Nice computer you have",
-        link_video: 'https://www.youtube.com/watch?v=7Qgpasu3xSU' },
-    ]);
+    const [videos, setVideos] = useState([]);
 
     return (
         <>
