@@ -6,14 +6,15 @@
     color: blue; 
   }
 
-  .button {
-    margin-left: 1em;
-    color: white;
-    font-weight: 500;
+  .button  {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease 0s;
   }
 
   .button:hover {
     background-color: #fff;
     color: #240046;
-
   }

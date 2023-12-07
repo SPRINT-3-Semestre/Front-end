@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import style from "../../ui/styles/VideoCard.module.css";
+
 function VideoCard(props) {
     const [video, setVideo] = useState();
 
@@ -17,18 +19,22 @@ function VideoCard(props) {
     }, [])
 
     return (
-        <div className="card">
-            <div className="card-title text-center">
-                <h5>{props.title}</h5>
-            </div>
-            <div className="card-body">
-                <iframe
-                    title={props.title}
-                    src={`https://www.youtube.com/embed/${video}`}
-                    allowFullScreen></iframe>
+        <div className={style.card}>
+            <div className="card">
+                <div className="card-header text-center">
+                    <h5 className="card-title mb-0">{props.title}</h5>
+                </div>
+                <div className="card-body embed-responsive embed-responsive-16by9">
+                    <iframe
+                        title={props.title}
+                        className="embed-responsive-item"
+                        src={`https://www.youtube.com/embed/${video}`}
+                        allowFullScreen
+                    ></iframe>
+                </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default VideoCard;

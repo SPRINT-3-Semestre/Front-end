@@ -5,6 +5,9 @@ import Sidebar from "../../ui/components/surfaces/SideBar";
 import style from "../../ui/styles/Exhibition.module.css";
 import axios from "axios";
 
+import defaultImage from '../../ui/images/personicon.png';
+
+
 import Pedido from "../../ui/components/modals/Pedido";
 import { Link } from "react-router-dom";
 
@@ -55,8 +58,11 @@ function Exhibition() {
                   id={customer.id}
                   name={customer.nome}
                   price={customer.valorHora}
-                  personImage={customer.photo_profile}
-                  skills={customer.habilidades}
+                  personImage={
+                    customer.photoProfileData
+                      ? `data:image/jpeg;base64,${customer.photoProfileData}`
+                      : defaultImage
+                  } skills={customer.skills}
                 />
               ))}
             </div>

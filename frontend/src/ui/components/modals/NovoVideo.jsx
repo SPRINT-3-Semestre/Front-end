@@ -26,7 +26,6 @@ function NovoVideo({ videos, setVideos }) {
 
     return (
         <>
-            {sessionStorage.getItem('editor') === 'true' && (
                 <>
                     <div className="col-md-2 mt-4">
                         <button className="btn btn-primary" onClick={handleOpenModal}>
@@ -47,15 +46,15 @@ function NovoVideo({ videos, setVideos }) {
                                         onChange={(e) => setTitleVideo(e.target.value)}
                                     />
                                 </div>
-                           <div className="col-md-6">
-                               <label>Link do Vídeo:</label>
-                                <input
-                                    type="text"
-                                    value={newVideoLink}
-                                    onChange={(e) => setNewVideoLink(e.target.value)}
+                                <div className="col-md-6">
+                                    <label>Link do Vídeo:</label>
+                                    <input
+                                        type="text"
+                                        value={newVideoLink}
+                                        onChange={(e) => setNewVideoLink(e.target.value)}
                                     />
-                                    </div>
-                           </div>
+                                </div>
+                            </div>
                         </Modal.Body>
                         <Modal.Footer>
                             <Button variant="secondary" onClick={handleCloseModal}>
@@ -67,7 +66,6 @@ function NovoVideo({ videos, setVideos }) {
                         </Modal.Footer>
                     </Modal>
                 </>
-            )}
         </>
     )
 }

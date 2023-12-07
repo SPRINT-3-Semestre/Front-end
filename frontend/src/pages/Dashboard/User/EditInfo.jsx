@@ -67,6 +67,8 @@ function EditInfo() {
         }
     };
 
+    console.log(imagen)
+
     const trocarImagem = async () => {
         try {
             if (!image) {
@@ -114,6 +116,7 @@ function EditInfo() {
                 }
             }).then((res) => {
                 console.log(res.data)
+                alert("Dados atualizados com sucesso!")
             }).catch((err) => {
                 console.log(err);
             })
@@ -195,7 +198,7 @@ function EditInfo() {
                                         </div>
                                         <div className="row mt-4">
                                             <div className="col-md-12">
-                                                <button type="submit" onClick={saveInfo} className={`btn btn-success`}> Atualizar dados </button>
+                                                <button onClick={saveInfo} className={`btn btn-success`}> Atualizar dados </button>
                                             </div>
                                         </div>
                                     </div>

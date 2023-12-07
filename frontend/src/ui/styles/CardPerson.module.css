@@ -42,9 +42,9 @@
     display: flex;
     position: absolute;
     justify-content: center;
-    bottom: 0px;
-    left: 5em;
-    width: 50%;
+    bottom: 5px;
+    width: 40%;
+    left: 1em;
     padding: 10px 0;
     border: none;
     border-radius: 2px;
@@ -59,6 +59,31 @@
 .cardPerson .bttn:hover{
     transform: scale(1.02);
     background: #5F00C2;
+    z-index: 1;
+}
+
+.bttn2{
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    bottom: 5px;
+    width: 40%;
+    padding: 10px 0;
+    border: none;
+    border-radius: 2px;
+    background: #7C01FA;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+
+.cardPerson .bttn2:hover{
+    transform: scale(1.02);
+    background: #5F00C2;
+    z-index: 1;
 }
 
 .cardPerson .skills{

@@ -21,31 +21,31 @@ function Pedido({ onClose }) {
     };
   }, [onClose]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+    const handleSubmit = (event) => {
+      event.preventDefault();
 
-    const data = {
-      title,
-      desc,
-      skills: skills.split(',').map(skill => skill.trim()),
-      clientFinal: sessionStorage.getItem("userId")
-    };
+      const data = {
+        title,
+        desc,
+        skills: skills.split(',').map(skill => skill.trim()),
+        clientFinal: sessionStorage.getItem("userId")
+      };
 
-    axios.post('http://localhost:8080/orders', data, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-      },
-    })
-      .then((response) => {
-        console.log(response.data);
-        onClose();
+      axios.post('http://localhost:8080/orders', data, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+        },
       })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
+        .then((response) => {
+          console.log(response.data);
+          onClose();
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+    
   return (
     <>
       <div className="background-modal" style={{

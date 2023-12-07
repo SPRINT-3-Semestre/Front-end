@@ -12,8 +12,8 @@ const SidebarIcon = (props) => {
       <div className={style.sidebarContent}>
         <ul>
           <li><a href={props.ref1}>{props.firstoption}</a></li>
-          <li><a href={props.ref2}>{props.secondoption}</a></li>
-          <li><a href={props.ref3} onClick={props.thirdoptiion === "Sair" ? exit : ''}>{props.thirdoptiion}</a></li>
+          <li><a href={props.ref2}  onClick={props.secondoption === "Sair" ? exit : ''}>{props.secondoption}</a></li>
+          <li><a href={props.ref3}>{props.thirdoptiion}</a></li>
         </ul>
       </div>
     </span>

@@ -9,30 +9,23 @@ import NovoVideo from "../../ui/components/modals/NovoVideo";
 function Portfolio() {
 
     const [videos, setVideos] = useState([
-        { link_video: 'https://www.youtube.com/watch?v=7Qgpasu3xSU' },
+        {
+        title: "Nice computer you have",
+        link_video: 'https://www.youtube.com/watch?v=7Qgpasu3xSU' },
     ]);
 
     return (
         <>
             <Helmet title="Portfolio" />
             <Sidebar />
+
             <div className="container">
                 <div className="row">
-                    <div className="col-md-6 mt-4">
+                    <div className="col-md-12 mt-5 text-center">
                         <img src={defaultPhoto} alt="Foto do editor" width={200} />
-                        <p className='{`${style.Editor_name}`}'>Nome do editor</p>
-                    </div>
-
-                    <div className="col-md-6">
-                        <h3 className="mt-4">Sobre mim</h3>
-                        <p className="">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Vel deserunt commodi aperiam laborum illum quis, vero,
-                            odio voluptatum similique laudantium, numquam minus illo
-                            nobis ipsa labore nostrum nulla accusantium rerum?
-                        </p>
+                        <h2>Nome do editor</h2>
                     </div>
                 </div>
-
                 <div className="row">
                     <div className="col-md-12">
                         <h3 className="mt-4">Habilidades</h3>
@@ -49,17 +42,15 @@ function Portfolio() {
                         </div>
                     </div>
                     <hr />
-
-                    <div className="row">
-                        <div className="col-md-9 text-center">
-                            <h3 className="mt-4">Videos</h3>
-                        </div>
-                        {/* ... (seu código existente) */}
-                        {sessionStorage.getItem('editor') === 'true' && (
-                            <div className="col-md-3 mt-4">
+                        {sessionStorage.getItem('editor') &&
+                            <div className="col-md-12 mt-4">
                                 <NovoVideo videos={videos} setVideos={setVideos} />
                             </div>
-                        )}
+                        }
+                    <div className="row text-center">
+                        <div className="col-md-12">
+                            <h3 className="mt-4">Videos</h3>
+                        </div>
                         {videos.map((video, index) => (
                             <div key={index} className="col-md-4 mt-4">
                                 <VideoCard link_video={video.link_video} title={video.title} />

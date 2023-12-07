@@ -12,7 +12,7 @@ function Header() {
       <Navbar className="secondary_color" expand="lg">
         <Container>
           <Navbar.Brand>
-            <Link to="/home" className={`nav nav-link ${style.editmatch_logo_color}`}> {/* Use o Link para navegar para a página internamente */}
+            <Link to="/home" className={`nav nav-link ${style.editmatch_logo_color}`}>
               <img
                 src={logo}
                 width="50"
@@ -24,8 +24,8 @@ function Header() {
             </Link>
           </Navbar.Brand>
           <Nav>
-            <Link to="/register-seletor" className={`btn ${style.button} `}>Cadastrar</Link>
-            <Link to="/login" className={`btn ${style.button} `}>Login</Link>
+              <Link to="/register-seletor" className={style.button}>Cadastrar</Link>
+              <Link to="/login" className={style.button}>Login</Link>
           </Nav>
         </Container>
       </Navbar>

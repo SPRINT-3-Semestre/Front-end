@@ -16,45 +16,49 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    
+
     const url = "http://localhost:8080/usuarios/login";
     const logar = (email, password) => {
 
         axios.post(url, {
             email: email,
             senha: password
-          }, {
+        }, {
             headers: {
-              'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             }
-          })
+        })
             .then(response => {
-              if (response.status === 200 && response.data?.token) {
-                sessionStorage.setItem('authToken', response.data.token);
-                sessionStorage.setItem('usuario', response.data.nome);
-                sessionStorage.setItem('userId', response.data.userId);
-                sessionStorage.setItem('userEmail', response.data.email);
-                if(response.data.editor === true) {
-                sessionStorage.setItem('editor', true);
+                if (response.status === 200 && response.data?.token) {
+                    sessionStorage.setItem('authToken', response.data.token);
+                    sessionStorage.setItem('usuario', response.data.nome);
+                    sessionStorage.setItem('userId', response.data.userId);
+                    sessionStorage.setItem('userEmail', response.data.email);
+
+
+                    alert('Login realizado com sucesso!')
+                    if (response.data.editor) {
+                        sessionStorage.setItem('editor', response.data.editor);
+                        navigate('/exposicao-pedidos')
+                    } else {
+                        navigate('/exposicao-editor')
+                    }
+
+
+                } else {
+                    throw new Error('Ops! Ocorreu um erro interno.');
                 }
-                console.log(response.data)
-                toast.success('Login realizado com sucesso!');
-                navigate('/exposicao-editor');
-              } else {
-                throw new Error('Ops! Ocorreu um erro interno.');
-              }
             })
             .catch(error => {
-              toast.error(error.message);
+                toast.error(error.message);
             });
-        };
+    };
 
 
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const login = logar(email, password)
-        console.log(`Email: ${email}, Password: ${password}`);
         setEmail('')
         setPassword('');
     };

@@ -23,11 +23,13 @@ function Register() {
 
     const [hourValue, setHourValue] = useState('n/a');
 
-    const [pixKey, setPixKey] = useState('11961667767');
+    const [pixKey, setPixKey] = useState('');
 
-    const { rota } = useLocation().state;
+    const [skills, setSkills] = useState([]);
 
     const navigate = useNavigate();
+
+    const { rota } = useLocation().state;
 
     const endpoint = rota;
     const handleSubmit = async (event) => {
@@ -47,6 +49,7 @@ function Register() {
                 email: email,
                 password: password,
                 chavePix: pixKey,
+                skills: skills.length >= 1 ? skills.split(',').map(skill => skill.trim()) : null,
                 valorHora: hourValue,
                 isEditor: endpoint === 'http://localhost:8080/editores' ? true : false
             });
@@ -86,6 +89,7 @@ function Register() {
                                     value={name}
                                     onChange={(event) => setName(event.target.value)}
                                     required
+                                    maxLength={25}
                                 />
                             </div>
                             <div className="form-group">
@@ -98,6 +102,7 @@ function Register() {
                                     value={lastName}
                                     onChange={(event) => setLastName(event.target.value)}
                                     required
+                                    maxLength={50}
                                 />
                             </div>
                             <div className="form-group">
@@ -111,6 +116,7 @@ function Register() {
                                     value={email}
                                     onChange={(event) => setEmail(event.target.value)}
                                     required
+                                    maxLength={30}
                                 />
                             </div>
                             <div className="form-group">
@@ -137,8 +143,32 @@ function Register() {
                                     required
                                 />
                             </div>
+                            <div className="form-group">
+                                <label htmlFor="inputHourValue">Chave pix</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="inputPixKey"
+                                    placeholder="Digite sua chave pix"
+                                    value={pixKey}
+                                    onChange={(event) => setPixKey(event.target.value)}
+                                    required
+                                />
+                            </div>
                             {rota === 'http://localhost:8080/editores' && (
                                 <>
+                                    <div className="form-group">
+                                        <label htmlFor="inputSkillsValue">Habilidades</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            id="inputSkillsValue"
+                                            placeholder="Digite suas melhores habilidades (separadas por vírgula)"
+                                            value={skills}
+                                            onChange={(event) => setSkills(event.target.value)}
+                                            required
+                                        />
+                                    </div>
                                     <div className="form-group">
                                         <label htmlFor="inputHourValue">Valor do seu serviço (Valor hora)</label>
                                         <input
@@ -148,18 +178,6 @@ function Register() {
                                             placeholder="Digite o valor do seu serviço"
                                             value={hourValue}
                                             onChange={(event) => setHourValue(event.target.value)}
-                                            required
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="inputHourValue">Chave pix</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            id="inputPixKey"
-                                            placeholder="Digite sua chave pix"
-                                            value={pixKey}
-                                            onChange={(event) => setPixKey(event.target.value)}
                                             required
                                         />
                                     </div>

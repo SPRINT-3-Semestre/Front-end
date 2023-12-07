@@ -1,6 +1,5 @@
 import React from 'react';
 import style from '../styles/CardPerson.module.css';
-import defaultImage from '../images/personicon.png';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -30,27 +29,73 @@ const CardPerson = (props) => {
       });
   };
 
+  const viewPortfolio = () => {
+    axios.get(`http://localhost:8080/usuarios/${props.id}/portfolio`, {
+      headers: {
+        'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+        'Content-Type': 'application/json',
+      }
+
+    })
+      .then((response) => {
+        console.log(response.data);
+        navigate('/portfolio', { state: { portfolio: response.data } });
+      })
+      .catch((error) => {
+        console.error('Erro ao enviar pedido:', error);
+        alert('Erro ao enviar pedido. Por favor, tente novamente mais tarde.');
+      });
+  }
+
   return (
     <div className={style.cardPerson}>
       <div className="row">
         <div className="col-md-6">
+
           <a>
-            <img src={props.personImage ? props.personImage : defaultImage} alt="personIcon" style={{ borderRadius: '50%' }}/>
+            <img
+              src={props.personImage}
+              alt="personIcon"
+              style={{
+                width: '100px',
+                height: '100px',
+                borderRadius: '50%',
+                objectFit: 'cover',
+              }}
+            />
           </a>
         </div>
+
         <div className="col-md-6">
           <p className={`${style.name} mt-5 m-0`}>{props.name ? props.name : ' Nome da pessoa'}</p>
         </div>
+
       </div>
       <hr />
+
       <p className={style.price}><b>R$</b>{props.price ? props.price : '0.00'}/hr</p>
       <p className={style.skills}><b>Habilidades</b></p>
+
       <ul>
-        {
-          props.skills ? props.skills.map((skill) => <li key={skill}>{skill}</li>) : <li>Nenhuma</li>
-        }
+
+        {props.skills ? props.skills
+          .replace('[', '')
+          .replace(']', '')
+          .split(',')
+          .map((skill, index) => (
+            <li key={index}>{skill.trim()}</li>
+          )) : <li>Nenhuma</li>}
       </ul>
-      <button className={style.bttn} onClick={sendToCart}>Contratar</button>
+
+      <div className="row text-center mt-5">
+        <div className="col-md-6 mt-5">
+          <button className={style.bttn} onClick={sendToCart}>Contratar</button>
+        </div>
+        <div className="col-md-6 mt-5">
+          <button className={style.bttn2}>Portfolio</button>
+        </div>
+
+      </div>
     </div>
   );
 };

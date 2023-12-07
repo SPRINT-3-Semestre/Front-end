@@ -30,7 +30,7 @@ function Rotas() {
           <Route path="/exposicao-pedidos" element={<PrivateRoute element={<ExhibitionOrders />}/>} />
           <Route path="/portfolio/editor" element={<PrivateRoute element={<Portfolio />}/>} />{/*Precisa colocar um id*/}
           <Route path="/editar-informacoes" element={<PrivateRoute element={<EditInfo />}/>} />
-          <Route path="/ganhos-mensais" element={<PrivateRoute element={<MonthlyGains />}/>} />
+          {/* <Route path="/ganhos-mensais" element={<PrivateRoute element={<MonthlyGains />}/>} /> */}
           <Route path="/carrinho" element={<PrivateRoute element={<Cart />}/>} />
           <Route path="/chat" element={<PrivateRoute element={<Chat />}/>} />
           <Route path="/conversas-ativas" element={<PrivateRoute element={<ActiveConversations />}/>} />
