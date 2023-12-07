@@ -11,9 +11,10 @@ function MyOrders() {
     const [showModal, setShowModal] = useState(false);
     const [orders, setOrders] = useState([]);
 
+    const userId = sessionStorage.getItem('userId');
 
     const fetchOrders = () => {
-        axios.get('http://localhost:8080/orders', {
+        axios.get(`http://localhost:8080/orders/order-client?Id=${userId}`, {
             headers: {
                 Authorization: `Bearer ${sessionStorage.getItem('authToken')}`
             }

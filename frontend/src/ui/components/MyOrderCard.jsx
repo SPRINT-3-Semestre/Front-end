@@ -18,29 +18,26 @@ function MyOrderCard(props) {
 
     const handleEdit = () => {
         const data = {
-          title,
-          desc: description,
-          skills
+            title: title,  // Certifique-se de incluir o campo 'title'
+            desc: description,
+            skills: skills,
         };
-      
-        console.log("Data", data)
+    
         axios.patch(`http://localhost:8080/orders/${props.id}`, data, {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem('authToken')}`
-          }
+            headers: {
+                Authorization: `Bearer ${sessionStorage.getItem('authToken')}`
+            }
         }).then((response) => {
-          console.log(response);
-          alert('Pedido editado com sucesso!');
+            console.log(response);
+            alert('Pedido editado com sucesso!');
         }).catch((error) => {
-          alert('Deu erro, man');
-          console.log(error);
+            alert('Deu erro, man');
+            console.log(error);
         });
-      
+    
         // Fechar o modal de editar
         setShowEditModal(false);
-      };
-      
-
+    };
 
     const handleDelete = () => {
         axios.delete(`http://localhost:8080/orders/${props.id}`, {
@@ -62,7 +59,6 @@ function MyOrderCard(props) {
         <>
             <div className={`card ${style.card}`}>
                 <div className="card-body">
-                    <h5 className="card-title">{props.title}</h5>
                     <div className="row">
                         <div className="col-md-6">
                             <img
